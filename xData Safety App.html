@@ -1,0 +1,1327 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="xData teaches AI and privacy awareness: a game path for under 18s and an online course for adults.">
+<title>xData Safety App</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23B85208%22%2F%3E%3Cg%20stroke%3D%22%23fff%22%20stroke-width%3D%2211%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M30%2042%2070%2082M70%2042%2030%2082%22%2F%3E%3C%2Fg%3E%3Cg%20stroke%3D%22%231B2437%22%20stroke-width%3D%221.6%22%3E%3Ccircle%20cx%3D%2236%22%20cy%3D%2224%22%20r%3D%226%22%20fill%3D%22%23FFC800%22%2F%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2219%22%20r%3D%226%22%20fill%3D%22%23FF4B4B%22%2F%3E%3Ccircle%20cx%3D%2264%22%20cy%3D%2224%22%20r%3D%226%22%20fill%3D%22%2358CC02%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E%0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+<style>
+/* Layout concept: one phone-width column on every screen. Under-18 route is a bright game path
+   (green, blue, purple units, gold stars). 18+ route is a calm course (white surfaces, magenta actions).
+   Brand orange only on the route picker. */
+:root {
+  --font-display: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --bg: #F4F6F7;
+  --surface: #FFFFFF;
+  --surface-2: #EBEFF2;
+  --ink: #1B2437;
+  --muted: #4F5B73;
+  --line: #D5DCE3;
+  --orange: #B85208;
+  --gold: #B45309;
+  --gold-fill: #FFC800;
+  --green: #2E7D00;
+  --green-soft: #E3F6D5;
+  --green-ink: #1F5200;
+  --red: #B3261E;
+  --red-text: #B3261E;
+  --red-soft: #FDE3E1;
+  --red-ink: #8A1C16;
+  --blue: #0B6BB5;
+  --blue-line: #0B6BB5;
+  --blue-soft: #DDEFFD;
+  --blue-ink: #084F86;
+  --purple: #7A3EA6;
+  --magenta: #C2008F;
+  --magenta-line: #C2008F;
+  --magenta-soft: #FCE5F5;
+  --magenta-ink: #8F0069;
+  --plum: #22103A;
+  --focus: #1D4ED8;
+  --shadow: rgba(27, 36, 55, .12);
+  --white: #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1420; --surface: #1A2133; --surface-2: #232C42; --ink: #EEF1F6; --muted: #A9B4C8; --line: #33405C;
+    --orange: #B85208; --gold: #FFC857; --gold-fill: #FFC800;
+    --green: #2E7D00; --green-soft: #173B0B; --green-ink: #B8F08A;
+    --red: #B3261E; --red-text: #FF8A80; --red-soft: #4A1714; --red-ink: #FFC4C0;
+    --blue: #0B6BB5; --blue-line: #4DA3E6; --blue-soft: #0E2F4D; --blue-ink: #A8D6F8;
+    --purple: #7A3EA6; --magenta: #C2008F; --magenta-line: #FF5CCB; --magenta-soft: #3F0E33; --magenta-ink: #FFB3E6; --plum: #22103A;
+    --focus: #8CB4FF; --shadow: rgba(0, 0, 0, .5); --white: #FFFFFF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1420; --surface: #1A2133; --surface-2: #232C42; --ink: #EEF1F6; --muted: #A9B4C8; --line: #33405C;
+  --orange: #B85208; --gold: #FFC857; --gold-fill: #FFC800;
+  --green: #2E7D00; --green-soft: #173B0B; --green-ink: #B8F08A;
+  --red: #B3261E; --red-text: #FF8A80; --red-soft: #4A1714; --red-ink: #FFC4C0;
+  --blue: #0B6BB5; --blue-line: #4DA3E6; --blue-soft: #0E2F4D; --blue-ink: #A8D6F8;
+  --purple: #7A3EA6; --magenta: #C2008F; --magenta-line: #FF5CCB; --magenta-soft: #3F0E33; --magenta-ink: #FFB3E6; --plum: #22103A;
+  --focus: #8CB4FF; --shadow: rgba(0, 0, 0, .5); --white: #FFFFFF;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { height: 100%; }
+body {
+  margin: 0; min-height: 100%; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5; -webkit-text-size-adjust: 100%;
+}
+button, input, textarea { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ic { width: 1.4em; height: 1.4em; flex: none; }
+
+/* ---------- shell ---------- */
+.shell {
+  width: 100%; max-width: 480px; min-height: 100dvh; margin: 0 auto; background: var(--bg);
+  display: flex; flex-direction: column; position: relative;
+}
+@media (min-width: 560px) { .shell { box-shadow: 0 0 0 1px var(--line), 0 12px 40px var(--shadow); } }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.main { flex: 1; display: flex; flex-direction: column; gap: 16px; padding-block: 16px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 20px;
+  border: 0; border-radius: 14px; font-weight: 700; font-size: 15px; letter-spacing: .04em; cursor: pointer; text-transform: uppercase;
+  background: var(--green); color: var(--white); box-shadow: 0 4px 0 rgba(0, 0, 0, .28); transition: transform .08s, box-shadow .08s;
+}
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0, 0, 0, .28); }
+.btn[disabled] { background: var(--surface-2); color: var(--muted); box-shadow: none; cursor: not-allowed; }
+.btn-block { width: 100%; }
+.btn-red { background: var(--red); }
+.btn-blue { background: var(--blue); }
+.btn-course { background: var(--magenta); box-shadow: none; text-transform: none; letter-spacing: 0; border-radius: 10px; }
+.btn-course:active { transform: none; opacity: .9; }
+.btn-outline { background: var(--surface); color: var(--magenta-ink); border: 2px solid var(--magenta-line); box-shadow: none; text-transform: none; letter-spacing: 0; border-radius: 10px; }
+.btn-ghost { background: transparent; color: var(--ink); box-shadow: none; border: 2px solid var(--line); text-transform: none; letter-spacing: 0; }
+.link { background: none; border: 0; padding: 4px 0; color: var(--magenta-ink); text-decoration: underline; cursor: pointer; font-size: 14px; }
+.link.youth { color: var(--blue-ink); }
+
+/* ---------- route picker ---------- */
+.route-screen { background: var(--orange); color: var(--white); min-height: 100dvh; padding-block: 36px 24px; display: flex; flex-direction: column; gap: 20px; }
+.route-screen h1 { font-size: 40px; font-weight: 700; letter-spacing: .08em; text-align: center; }
+.route-screen .lead { text-align: center; font-size: 17px; }
+.route-cards { display: flex; flex-direction: column; gap: 14px; }
+.route-card { background: var(--surface); color: var(--ink); border-radius: 24px; padding: 16px; display: flex; gap: 14px; align-items: center; box-shadow: 0 6px 20px rgba(0, 0, 0, .25); }
+.route-card .mascot { width: 84px; height: 91px; flex: none; }
+.route-card .rc-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.route-card h2 { font-size: 22px; }
+.route-card .btn { align-self: stretch; }
+.route-foot { margin-top: auto; display: flex; flex-direction: column; gap: 8px; align-items: center; text-align: center; font-size: 13px; }
+.route-foot .link { color: var(--white); }
+
+/* ---------- tab bar ---------- */
+.tabbar {
+  position: sticky; bottom: 0; z-index: 5; display: flex; background: var(--surface); border-top: 2px solid var(--line);
+  padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); gap: 4px;
+}
+.tab { flex: 1; min-height: 52px; min-width: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border: 2px solid transparent; border-radius: 12px; background: none; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); cursor: pointer; }
+.tab .ic { width: 24px; height: 24px; }
+.tab[aria-current="page"] { background: var(--blue-soft); border-color: var(--blue-line); color: var(--blue-ink); }
+.adult .tab[aria-current="page"] { background: var(--magenta-soft); border-color: var(--magenta-line); color: var(--magenta-ink); }
+
+/* ---------- under-18: header, learn path ---------- */
+.ybar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--surface); border-bottom: 2px solid var(--line); padding-block: 8px; }
+.ybar .mascot { width: 36px; height: 39px; }
+.stat { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+.stat .ic { width: 22px; height: 22px; }
+.stat.heart { color: var(--red-text); }
+.tip { display: flex; gap: 10px; align-items: center; width: 100%; text-align: left; background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 10px 12px; cursor: pointer; }
+.tip .mascot { width: 44px; height: 48px; flex: none; }
+.unit-banner { border-radius: 16px; padding: 12px 16px; color: var(--white); box-shadow: 0 4px 0 rgba(0, 0, 0, .25); }
+.unit-banner .eyebrow { color: rgba(255, 255, 255, .92); }
+.unit-banner h2 { font-size: 20px; }
+.path { display: flex; flex-direction: column; align-items: center; gap: 18px; padding-block: 20px 10px; }
+.node-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; width: 120px; }
+.node { width: 68px; height: 68px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; color: #fff; }
+.node .ic { width: 28px; height: 28px; }
+.node.available { background: var(--blue); box-shadow: 0 6px 0 var(--blue-ink); }
+.node.complete { background: var(--gold-fill); color: var(--plum); box-shadow: 0 6px 0 #B58900; }
+.node.locked { background: var(--surface-2); color: var(--muted); box-shadow: 0 6px 0 var(--line); }
+.node:active { transform: translateY(3px); }
+.node .stars { display: flex; gap: 0; }
+.node .stars .ic { width: 16px; height: 16px; }
+.node .stars .off { opacity: .3; }
+.node-label { font-size: 13px; font-weight: 600; text-align: center; line-height: 1.25; }
+.start-marker { position: absolute; top: -30px; background: var(--surface); color: var(--blue-ink); border: 2px solid var(--blue-line); border-radius: 10px; font-size: 12px; font-weight: 700; padding: 1px 8px; animation: bounce 1.1s ease-in-out infinite; }
+.start-marker::after { content: ''; position: absolute; left: 50%; bottom: -7px; width: 10px; height: 10px; background: var(--surface); border-right: 2px solid var(--blue-line); border-bottom: 2px solid var(--blue-line); transform: translateX(-50%) rotate(45deg); }
+.path-pixel { position: absolute; left: -62px; top: 4px; width: 56px; }
+@keyframes bounce { 50% { transform: translateY(-6px); } }
+
+/* ---------- mascot animation ---------- */
+.mascot { display: block; overflow: visible; }
+.mascot .eye { transform-box: fill-box; transform-origin: center; animation: blink 5s infinite; }
+.pixel .tail { transform-box: fill-box; transform-origin: 10% 90%; animation: wag 2.6s ease-in-out infinite; }
+.pixel:hover { animation: wiggle .5s; }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+@keyframes wag { 0%, 70%, 100% { transform: rotate(0); } 80% { transform: rotate(10deg); } 90% { transform: rotate(-6deg); } }
+@keyframes wiggle { 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .mascot .eye, .pixel .tail, .pixel:hover, .start-marker, .bar-fill, .pop { animation: none !important; }
+  .btn, .opt, .bar-fill { transition: none !important; }
+}
+
+/* ---------- lesson player ---------- */
+.lesson-top { display: flex; align-items: center; gap: 12px; padding-block: 12px; position: sticky; top: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 4; }
+.xbtn { width: 44px; height: 44px; border: 0; background: none; color: var(--muted); display: grid; place-items: center; cursor: pointer; border-radius: 12px; flex: none; }
+.pbar { flex: 1; height: 16px; border-radius: 8px; background: var(--surface-2); overflow: hidden; }
+.pbar > i { display: block; height: 100%; background: var(--green); border-radius: 8px; transition: width .3s; }
+.adult .pbar > i, .pbar.adult > i { background: var(--magenta); }
+.lesson-body { flex: 1; display: flex; flex-direction: column; gap: 16px; padding-block: 4px 20px; }
+.bubble-row { display: flex; gap: 10px; align-items: flex-start; }
+.bubble-row .mascot { width: 64px; height: 70px; flex: none; }
+.bubble { position: relative; flex: 1; min-width: 0; background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 12px 14px; }
+.bubble h2 { font-size: 18px; margin-bottom: 4px; }
+.bubble::before { content: ''; position: absolute; left: -9px; top: 22px; width: 14px; height: 14px; background: var(--surface); border-left: 2px solid var(--line); border-bottom: 2px solid var(--line); transform: rotate(45deg); }
+.article h2 { font-size: 24px; }
+.article .text { font-size: 17px; }
+.listen { align-self: flex-start; display: inline-flex; gap: 6px; align-items: center; min-height: 44px; background: none; border: 0; color: var(--blue-ink); text-decoration: underline; cursor: pointer; font-size: 14px; padding: 0 4px; }
+.adult .listen { color: var(--magenta-ink); }
+.bottom {
+  position: sticky; bottom: 0; z-index: 4; background: var(--bg); border-top: 2px solid var(--line); display: flex; gap: 10px;
+  padding-top: 12px; padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+}
+.bottom .btn { flex: 1; }
+.sheet { position: sticky; bottom: 0; z-index: 4; padding-top: 14px; padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 10px; }
+.sheet.ok { background: var(--green-soft); color: var(--green-ink); }
+.sheet.bad { background: var(--red-soft); color: var(--red-ink); }
+.sheet-head { display: flex; gap: 10px; align-items: center; }
+.sheet-head .mascot { width: 44px; height: 48px; flex: none; }
+.sheet h3 { font-size: 18px; }
+.sheet p { font-size: 15px; }
+
+/* ---------- widgets ---------- */
+.wgt { background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { border: 2px solid var(--line); border-bottom-width: 4px; background: var(--surface); border-radius: 12px; padding: 6px 10px; min-height: 44px; font-weight: 600; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; }
+.chip.hot { border: 2px dashed var(--gold); border-bottom-width: 2px; background: var(--surface); color: var(--ink); }
+.chip.hot[aria-pressed="true"] { background: var(--gold-fill); color: var(--plum); border-style: solid; }
+.plain { font-size: 15px; padding: 6px 2px; }
+.chip.sel { border-color: var(--blue-line); background: var(--blue-soft); color: var(--blue-ink); }
+.chip.ok { border-color: var(--green); background: var(--green-soft); color: var(--green-ink); }
+.chip.bad { border-color: var(--red); background: var(--red-soft); color: var(--red-ink); }
+.chip[disabled] { cursor: default; }
+.expl { min-height: 3.2em; border-radius: 12px; background: var(--blue-soft); color: var(--blue-ink); padding: 10px 12px; font-size: 15px; }
+.expl.empty { background: var(--surface-2); color: var(--muted); }
+.adult .expl { background: var(--magenta-soft); color: var(--magenta-ink); }
+.adult .expl.empty { background: var(--surface-2); color: var(--muted); }
+details.alt { font-size: 13px; color: var(--muted); }
+details.alt summary { cursor: pointer; min-height: 32px; display: flex; align-items: center; }
+details.alt ul { margin: 4px 0 0; padding-left: 18px; }
+.meter-track { height: 18px; border-radius: 9px; background: var(--surface-2); overflow: hidden; }
+.meter-fill { height: 100%; width: 0; background: var(--green); transition: width .3s; }
+.meter-fill.med { background: #B8860B; }
+.meter-fill.high { background: var(--red); }
+.meter-read { font-weight: 700; display: flex; justify-content: space-between; gap: 8px; }
+.checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.check { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 10px; border: 2px solid var(--line); border-radius: 12px; cursor: pointer; font-size: 15px; }
+.check input { width: 22px; height: 22px; accent-color: var(--blue); flex: none; }
+.flow { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+.flow-step { border: 2px solid var(--line); background: var(--surface); border-radius: 12px; padding: 8px 12px; min-height: 44px; text-align: left; cursor: pointer; font-weight: 600; }
+.flow-step[aria-expanded="true"] { border-color: var(--blue-line); background: var(--blue-soft); color: var(--blue-ink); }
+.adult .flow-step[aria-expanded="true"] { border-color: var(--magenta-line); background: var(--magenta-soft); color: var(--magenta-ink); }
+.flow-step .fnote { display: block; font-weight: 400; font-size: 14px; margin-top: 2px; }
+.flow-arrow { align-self: center; color: var(--muted); height: 22px; display: grid; place-items: center; }
+.flow-arrow .ic { width: 18px; height: 18px; transform: rotate(-90deg); }
+.pw-input { width: 100%; min-height: 48px; padding: 8px 12px; border: 2px solid var(--line); border-radius: 12px; background: var(--bg); }
+.pw-meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.pw-meter i { height: 10px; border-radius: 5px; background: var(--surface-2); }
+.pw-meter i.on { background: var(--green); }
+.pw-meter.l0 i.on, .pw-meter.l1 i.on { background: var(--red); }
+.pw-meter.l2 i.on { background: #B8860B; }
+
+/* ---------- quiz ---------- */
+.q h2 { font-size: 22px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt { text-align: left; min-height: 52px; padding: 10px 14px; border: 2px solid var(--line); border-bottom-width: 4px; background: var(--surface); border-radius: 14px; font-weight: 600; cursor: pointer; font-size: 16px; }
+.opt.sel { border-color: var(--blue-line); background: var(--blue-soft); color: var(--blue-ink); }
+.adult .opt.sel { border-color: var(--magenta-line); background: var(--magenta-soft); color: var(--magenta-ink); }
+.opt.ok { border-color: var(--green); background: var(--green-soft); color: var(--green-ink); }
+.opt.bad { border-color: var(--red); background: var(--red-soft); color: var(--red-ink); }
+.opt[disabled] { cursor: default; }
+.scenario { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.result-card { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 20px 8px; }
+.result-card .mascot { width: 120px; height: 130px; }
+.result-card h1 { font-size: 28px; }
+.big-stars { display: flex; gap: 6px; color: var(--gold-fill); }
+.big-stars .ic { width: 44px; height: 44px; }
+.big-stars .off { color: var(--surface-2); }
+.pop { animation: pop .4s ease-out; }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.tag { display: inline-flex; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); font-weight: 700; font-size: 13px; }
+
+/* ---------- dashboard ---------- */
+.levelcard { display: flex; gap: 14px; align-items: center; background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 14px; }
+.levelcard .mascot { width: 64px; height: 70px; flex: none; }
+.levelcard > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.levelcard h2 { font-size: 24px; }
+.xpbar { height: 14px; border-radius: 7px; background: var(--surface-2); overflow: hidden; }
+.xpbar i { display: block; height: 100%; background: var(--gold-fill); border-radius: 7px; }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; }
+.tile b { font-size: 26px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.tile span { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.card { background: var(--surface); border: 2px solid var(--line); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.card h2, .card h3 { font-size: 17px; }
+.bars { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; align-items: end; height: 120px; }
+.bars > div { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; gap: 4px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bars i { display: block; width: 100%; border-radius: 6px 6px 0 0; background: var(--green); min-height: 3px; }
+.bars i.zero { background: var(--surface-2); }
+.flames { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 11px; color: var(--muted); }
+.flames span { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.flames .dot { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); color: var(--muted); }
+.flames .dot.on { background: #FFE3B0; color: #9A3B00; }
+.flames .dot .ic { width: 20px; height: 20px; }
+.mrow { display: flex; flex-direction: column; gap: 4px; }
+.mrow .top { display: flex; justify-content: space-between; font-size: 14px; font-variant-numeric: tabular-nums; }
+.track { height: 12px; border-radius: 6px; background: var(--surface-2); overflow: hidden; }
+.track i { display: block; height: 100%; border-radius: 6px; }
+.badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 10px; }
+.badge { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; font-size: 12px; font-weight: 600; }
+.badge .disc { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: var(--gold-fill); color: var(--plum); }
+.badge .disc .ic { width: 28px; height: 28px; }
+.badge.locked .disc { background: var(--surface-2); color: var(--muted); }
+.badge small { font-weight: 400; color: var(--muted); font-size: 11px; line-height: 1.25; }
+.focus { background: var(--blue-soft); border-color: var(--blue-line); color: var(--blue-ink); }
+
+/* ---------- 18+ course ---------- */
+.adult .atop { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--surface); border-bottom: 1px solid var(--line); padding-block: 8px; }
+.atop .brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 20px; color: var(--magenta-ink); }
+.atop .mascot { width: 36px; height: 39px; }
+.banner { background: var(--plum); color: #fff; padding-block: 20px; display: flex; flex-direction: column; gap: 10px; }
+.banner .eyebrow { color: #F2B8E0; }
+.banner h1 { font-size: 26px; }
+.banner p { color: #E7DFF0; font-size: 15px; }
+.banner .row { display: flex; gap: 12px; align-items: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.banner .pbar { background: rgba(255, 255, 255, .25); height: 8px; }
+.banner .btn-course { background: #fff; color: var(--magenta-ink); }
+.week { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.week > h2 { font-size: 17px; padding: 12px 14px 4px; }
+.week > .eyebrow { padding: 12px 14px 0; }
+.lrow { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-top: 1px solid var(--line); }
+.lrow .info { flex: 1; min-width: 0; }
+.lrow b { display: block; font-size: 15px; }
+.lrow .st { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+.lrow .btn { min-height: 44px; padding: 6px 16px; font-size: 14px; flex: none; }
+.radio { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--muted); flex: none; display: grid; place-items: center; color: #fff; }
+.radio.done { background: var(--magenta); border-color: var(--magenta-line); }
+.radio .ic { width: 14px; height: 14px; }
+.bubbles { display: flex; gap: 8px; flex-wrap: wrap; padding-block: 12px; }
+.bub { width: 32px; height: 32px; min-width: 32px; border-radius: 50%; border: 2px solid var(--line); background: var(--surface); font-size: 13px; font-weight: 700; display: grid; place-items: center; cursor: pointer; color: var(--muted); }
+.bub.done { background: var(--magenta); border-color: var(--magenta-line); color: #fff; }
+.bub.cur { border-color: var(--magenta-line); color: var(--magenta-ink); }
+.bub.done.cur { box-shadow: 0 0 0 3px var(--magenta-soft); }
+.bub[disabled] { cursor: not-allowed; opacity: .6; }
+.bub .ic { width: 16px; height: 16px; }
+.ahead { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px 0; }
+.ahead .back { display: inline-flex; align-items: center; gap: 4px; background: none; border: 0; color: var(--magenta-ink); font-weight: 700; cursor: pointer; min-height: 44px; }
+.ahead .back .ic { width: 18px; height: 18px; }
+textarea.cbox { width: 100%; min-height: 130px; padding: 10px 12px; border: 2px solid var(--line); border-radius: 12px; background: var(--surface); resize: vertical; }
+.comment { display: flex; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.comment .av { width: 28px; height: 28px; border-radius: 50%; background: var(--magenta-soft); color: var(--magenta-ink); display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: none; }
+.warn { background: var(--red-soft); color: var(--red-ink); border-radius: 10px; padding: 8px 12px; font-size: 14px; }
+.adult .feedback { border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.adult .feedback.ok { background: var(--green-soft); color: var(--green-ink); }
+.adult .feedback.bad { background: var(--red-soft); color: var(--red-ink); }
+.pcard { border-radius: 12px; border: 1px dashed var(--line); padding: 16px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.pcard.ready { border: 2px solid var(--magenta-line); background: var(--magenta-soft); color: var(--magenta-ink); }
+.cert { background: #fff; color: #1B2437; border: 6px double #22103A; padding: 28px 18px; text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.cert h1 { font-size: 24px; letter-spacing: .04em; color: #22103A; }
+.cert .who { font-size: 26px; font-weight: 700; border-bottom: 2px solid #C2008F; padding: 0 12px 4px; min-width: 60%; min-height: 1.5em; overflow-wrap: anywhere; }
+.cert .mascot { width: 64px; height: 70px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field input { min-height: 48px; padding: 8px 12px; border: 2px solid var(--line); border-radius: 10px; background: var(--surface); }
+
+/* ---------- me / privacy ---------- */
+.list { display: flex; flex-direction: column; }
+.list > button, .list > a { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 52px; padding: 10px 4px; border: 0; border-top: 1px solid var(--line); background: none; text-align: left; cursor: pointer; font-weight: 600; text-decoration: none; color: inherit; }
+.list > :first-child { border-top: 0; }
+.prose { display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+.prose h3 { font-size: 16px; margin-top: 6px; }
+.prose ul { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.confirm { background: var(--red-soft); color: var(--red-ink); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.confirm .row { display: flex; gap: 10px; }
+.confirm .row .btn { flex: 1; }
+.toast { position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); max-width: min(92vw, 420px); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-size: 14px; z-index: 20; }
+.loading { min-height: 100dvh; display: grid; place-items: center; padding: 24px; text-align: center; gap: 12px; }
+
+@media print {
+  body { background: #fff; }
+  .shell { box-shadow: none; max-width: none; }
+  .no-print, .tabbar, .atop, .ahead { display: none !important; }
+  .cert { border-width: 6px; }
+}
+
+.flip { transform: scaleX(-1); }
+.youth .ahead .back { color: var(--blue-ink); }
+.ahead .back { background: none; border: 0; }
+
+</style>
+<div id="app"><div class="loading"><p>Loading xData…</p></div></div>
+<noscript>xData needs JavaScript to run.</noscript>
+<script>window.XDATA_STANDALONE = true; window.XDATA_CONTENT = {"version":1,"app":{"name":"xData","tagline":"Learn to protect your data and stay safe with AI.","eventsEndpoint":null},"course":{"title":"Privacy and AI Safety","blurb":"Protect your data and spot AI-powered scams. 3 weeks, 6 lessons, at your own pace.","passMark":0.6},"tips":["Tip: three random words make a strong password!","Tip: a real company will never rush you to pay by text.","Tip: if a video looks too shocking to be true, check who else is reporting it.","Tip: never type a card PIN or password into a chatbot.","Tip: when unsure, stop and ask someone you trust."],"units":[{"id":"your-data","title":"Your data","colour":"#2E7D00","order":1},{"id":"scams","title":"Scams and fraud","colour":"#0B6BB5","order":2},{"id":"ai-rights","title":"AI and your rights","colour":"#7A3EA6","order":3}],"lessons":[{"id":"personal-data","unit":"your-data","title":"What is personal data?","order":1,"status":"draft","reviewed":null,"sources":["ICO: What is personal data?","ICO: Children's code"],"steps":[{"type":"article","title":"Data about you","text":"Personal data is any information that can point to you. Tap each part to see why.","widget":{"kind":"hot","parts":[["Sam Patel","A name identifies you."],[" lives at "],["14 Elm Road","An address says where to find you."],[" and uses "],["sam.p@mail.example","An email address is personal data too."],[" with photo "],["IMG_2031.jpg","A photo can show your face and sometimes where it was taken."]]}},{"type":"article","title":"Some data needs extra care","text":"Health details, beliefs, and fingerprint or face scans are more sensitive. Misuse can do more harm, so companies must take extra care with them."},{"type":"article","title":"How much are you giving away?","text":"Apps and websites collect data all the time. Tick what an app might ask for and watch the meter.","widget":{"kind":"meter","title":"Oversharing meter","items":[{"text":"First name","weight":1},{"text":"Photo of your face","weight":2},{"text":"School name","weight":3},{"text":"Live location","weight":4},{"text":"Phone number","weight":3},{"text":"Home address","weight":4}],"levels":[{"upTo":34,"label":"Low","note":"Small details are usually fine, but think before sharing more."},{"upTo":67,"label":"Medium","note":"Put together, these details make you easier to find and target."},{"upTo":100,"label":"High","note":"That is a lot. Only share if you trust the service and really need to."}]}},{"type":"article","title":"Why it matters","text":"Data can be sold, leaked or used by scammers. Follow the trail.","widget":{"kind":"flow","steps":[{"title":"You sign up","note":"You give a name, email or more."},{"title":"Company stores it","note":"It sits in a database you cannot see."},{"title":"It leaks or is shared","note":"A breach or a sale puts it in other hands."},{"title":"Scammers use it","note":"They write messages that seem to know you."}]}},{"type":"article","title":"You have rights","text":"Under UK data law you can ask a company what it holds about you, ask it to fix mistakes, and in many cases ask it to delete your data."},{"type":"discussion","prompt":"Which piece of personal data would you find hardest to get back once it was public, and why?"},{"type":"test","questions":["pd-q1","pd-q2","pd-q3","pd-q4"]}]},{"id":"passwords","unit":"your-data","title":"Strong passwords","order":2,"status":"draft","reviewed":null,"sources":["NCSC: Three random words","NCSC: Password managers"],"steps":[{"type":"article","title":"Why passwords matter","text":"A password is the front door to your accounts. A weak one lets anyone walk in."},{"type":"article","title":"Three random words","text":"Long beats clever. Three random words joined together are strong and easy to remember. Try the tester. Never type a password you really use.","widget":{"kind":"password"}},{"type":"article","title":"What to avoid","text":"Guessing tools try these first. Tap to see why.","widget":{"kind":"hot","parts":[["password123","Very common. Attackers try these first."],[" "],["Sam2012","Names and years are easy to guess."],[" "],["qwerty","Keyboard patterns are on every guess list."]]}},{"type":"article","title":"One password per account","text":"If one site leaks your password, attackers try it everywhere else.","widget":{"kind":"flow","steps":[{"title":"Same password reused","note":"One password opens many doors."},{"title":"One site is hacked","note":"Your password is now in a leaked list."},{"title":"Attacker tries it elsewhere","note":"Email, shops and games get tested automatically."},{"title":"Many accounts taken","note":"A single leak becomes many."}]}},{"type":"article","title":"Add extra locks","text":"Turn on two-step verification, so a code or approval is needed after your password. A password manager can create and remember a different password for every account."},{"type":"discussion","prompt":"Which account do you use most that would cause the most trouble if someone else got in? What will you change?"},{"type":"test","questions":["pw-q1","pw-q2","pw-q3","pw-q4"]}]},{"id":"phishing","unit":"scams","title":"Spot the phish","order":3,"status":"draft","reviewed":null,"sources":["NCSC: Suspicious email actions","NCSC: Phishing guidance"],"steps":[{"type":"article","title":"Anatomy of a scam text","text":"Tap each highlighted part to see why it is suspicious.","widget":{"kind":"hot","parts":[["Royal Mail:","Sender names can be faked. Anyone can type a company name."],[" Your parcel is on hold. "],["Pay a £1.99 fee","A surprise payment request."],[" at "],["parcel-redeliver.xyz","A strange web address that is not the company's real site."],[" "],["within 1 hour","Pressure to act fast."]]}},{"type":"article","title":"Common red flags","text":"Watch for: rushing you, asking for money or codes, odd links, messages you did not expect, and threats if you do not act."},{"type":"article","title":"Check before you click","text":"Slow down. You can always check another way.","widget":{"kind":"flow","steps":[{"title":"Stop","note":"Do not tap the link or call the number in the message."},{"title":"Check another way","note":"Open the official app, or type the website address yourself."},{"title":"Report","note":"Forward scam texts to 7726 and scam emails to report@phishing.gov.uk."},{"title":"Delete","note":"Delete the message once you have reported it."}]}},{"type":"article","title":"Where to report","text":"Forward scam texts for free to 7726. Forward scam emails to report@phishing.gov.uk. If you lost money, tell your bank and report the fraud to the police."},{"type":"article","title":"If you already clicked","text":"Do not panic or feel silly. Scams fool many people. If you entered card details, call your bank using the number on your card. Change any password you typed, and tell someone you trust."},{"type":"discussion","prompt":"Describe a scam message you have seen, or one you think you could fall for. What gave it away?"},{"type":"test","questions":["ph-q1","ph-q2","ph-q3","ph-q4"]}]},{"id":"identity-theft","unit":"scams","title":"Identity theft","order":4,"status":"draft","reviewed":null,"sources":["ICO: Your data matters","Action Fraud and bank guidance (to confirm in legal review)"],"steps":[{"type":"article","title":"What is identity theft?","text":"Identity theft is when someone uses your details to open accounts, borrow money or pretend to be you."},{"type":"article","title":"How thieves get details","text":"They collect small clues from posts, leaks and scam messages. Tap to see which clues help them.","widget":{"kind":"hot","parts":[["Look at my new bank card!","Never post card photos. Numbers and the security code can be used to pay."],[" "],["Born 3 May","A birthday is often used to check identity."],[" "],["Lives in Leeds","A name and town help someone find you."]]}},{"type":"article","title":"Warning signs","text":"Payments you do not recognise, post for someone you do not know, a refused application you did not expect, or accounts you never opened."},{"type":"article","title":"Protect yourself","text":"Share less online, use strong different passwords, shred papers with your details, and check your bank statements and credit report regularly."},{"type":"article","title":"If it happens to you","text":"Contact your bank straight away. Change your passwords and report the fraud. Keep notes of what happened and when."},{"type":"discussion","prompt":"Which step do you think best protects against identity theft? Say what you will do differently."},{"type":"test","questions":["id-q1","id-q2","id-q3","id-q4"]}]},{"id":"deepfakes","unit":"ai-rights","title":"Deepfakes","order":5,"status":"draft","reviewed":null,"sources":["NCSC: Spotting scams","Ofcom: Deepfakes research"],"steps":[{"type":"article","title":"What is a deepfake?","text":"A deepfake is a video, image or voice made or changed by AI to look real. They can be fun, but they can also trick people."},{"type":"article","title":"Voice clone scams","text":"Scammers can copy a voice from a short clip. A call from a 'relative' asking for money in a hurry may be fake. Agree a family safe word, and call back on a number you already know."},{"type":"article","title":"Clues to look for","text":"No clue is perfect, and fakes keep improving. Tap each clue.","widget":{"kind":"hot","parts":[["Lips that do not match the words","Lip-sync glitches can be a clue."],[" "],["Blurry edges around the face","Hair and face edges can look smudged."],[" "],["Odd hands, teeth or shadows","AI often struggles with small details."],[" "],["Too shocking to be true","Content made to shock spreads fast. Pause before sharing."]]}},{"type":"article","title":"Check before you share","text":"Take a moment before you pass anything on.","widget":{"kind":"flow","steps":[{"title":"Pause","note":"Strong feelings are a signal to slow down."},{"title":"Who posted it?","note":"Is it a known account or a brand new one?"},{"title":"Who else reports it?","note":"Look for trusted news sites."},{"title":"Share only if sure","note":"If you are not sure, do not share."}]}},{"type":"article","title":"If you are targeted","text":"Tell someone you trust, keep evidence, and report it to the platform. Sharing fake intimate images of someone can be a crime in the UK. Under 18? Childline (0800 1111, free) can help."},{"type":"discussion","prompt":"Have you seen a video or voice clip that turned out to be fake? How did you find out?"},{"type":"test","questions":["df-q1","df-q2","df-q3","df-q4"]}]},{"id":"ai-and-you","unit":"ai-rights","title":"Chatbots and your data","order":6,"status":"draft","reviewed":null,"sources":["ICO: Guidance on AI and data protection","ICO: Rights related to automated decision making"],"steps":[{"type":"article","title":"What chatbots do with your words","text":"What you type may be stored, reviewed or used to improve the service. Check the privacy settings and read what the service says."},{"type":"article","title":"What not to share","text":"Tap the parts of this message that you should not type into a chatbot.","widget":{"kind":"hot","parts":[["Hi, I am Priya Shah","A full name is rarely needed to get help."],[" and my "],["school is Leeds High","Name plus school makes you easy to find."],[". My "],["card PIN is 1234","Never share PINs or passwords with a chatbot or anyone else."],[". Can you help me revise?"]]}},{"type":"article","title":"AI can be wrong","text":"Chatbots can sound sure and still be wrong. Check anything important.","widget":{"kind":"flow","steps":[{"title":"Ask","note":"Keep the question free of private details."},{"title":"Read","note":"Treat the answer as a draft, not a fact."},{"title":"Check","note":"Compare with a trusted source."},{"title":"Decide","note":"You make the final call."}]}},{"type":"article","title":"Your rights","text":"If a decision that really affects you is made only by a computer, you can often ask for a person to look at it again. The ICO website explains your rights."},{"type":"article","title":"Using AI safely","text":"Use privacy settings, keep secrets out, check the facts, and tell someone you trust if something online feels wrong."},{"type":"discussion","prompt":"What is one rule you will follow the next time you use an AI chatbot?"},{"type":"test","questions":["ai-q1","ai-q2","ai-q3","ai-q4"]}]}],"questions":[{"id":"pd-q1","type":"mcq","prompt":"Which of these is personal data?","options":["Your home address","The weather in London","Today's date","The word banana"],"answer":0,"explanation":"An address can lead someone to you, so it is personal data."},{"id":"pd-q2","type":"tf","prompt":"A photo of your face can be personal data.","answer":true,"explanation":"A photo can identify you, and sometimes shows where you were."},{"id":"pd-q3","type":"saferisky","prompt":"Safe or risky?","text":"Posting your school name and daily bus route on a public profile.","answer":"risky","explanation":"Together they show strangers where you will be and when."},{"id":"pd-q4","type":"redflags","prompt":"Tap the details you should not post publicly.","text":"Hi! I am Alex, I live at [[22 Park Lane]], my number is [[07700 900123]] and I love football.","explanation":"Your address and phone number should stay private."},{"id":"pw-q1","type":"mcq","prompt":"Which password is strongest?","options":["P@ssw0rd!","Sam2012","coffee-tiger-lamp-river","123456789"],"answer":2,"explanation":"Several random words make a long password that is hard to guess."},{"id":"pw-q2","type":"tf","prompt":"Using the same password everywhere is fine if it is long.","answer":false,"explanation":"If one site leaks it, attackers can open all your accounts."},{"id":"pw-q3","type":"saferisky","prompt":"Safe or risky?","text":"Sharing your password with a friend so they can play on your account.","answer":"risky","explanation":"Once shared, you lose control of it. Friends can share it on."},{"id":"pw-q4","type":"mcq","prompt":"What does two-step verification add?","options":["A second check, such as a code, after your password","A longer password","A faster login","Nothing important"],"answer":0,"explanation":"A second check stops someone who has only your password."},{"id":"ph-q1","type":"redflags","prompt":"Tap the red flags in this text message.","text":"URGENT: your parcel is on hold. Pay [[a £1.99 fee]] at [[parcel-redeliver.xyz]] [[within 1 hour]] or it will be returned.","explanation":"Pressure, a payment request and a strange link are classic scam signs."},{"id":"ph-q2","type":"mcq","prompt":"A text says your bank account is locked and tells you to tap a link. What is the best action?","options":["Tap the link quickly","Open your bank's official app or call the number on your card","Reply with your details","Forward it to friends"],"answer":1,"explanation":"Always contact your bank through a route you already trust."},{"id":"ph-q3","type":"tf","prompt":"Scammers can fake the sender name shown on a message.","answer":true,"explanation":"Anyone can type a company name as the sender."},{"id":"ph-q4","type":"saferisky","prompt":"Safe or risky?","text":"Typing a website address yourself instead of tapping a link in a message.","answer":"safe","explanation":"Typing it yourself avoids fake links."},{"id":"id-q1","type":"mcq","prompt":"Which details are most useful to an identity thief?","options":["Your date of birth and address","Your favourite film","Your shoe size","Your favourite colour"],"answer":0,"explanation":"Banks and companies often use these to check who you are."},{"id":"id-q2","type":"tf","prompt":"You only need to worry about identity theft if you are rich.","answer":false,"explanation":"Thieves use anyone's details to take out credit or open accounts."},{"id":"id-q3","type":"saferisky","prompt":"Safe or risky?","text":"Posting a photo of your new bank card.","answer":"risky","explanation":"The card number and security code can be used to pay."},{"id":"id-q4","type":"mcq","prompt":"You see a payment you do not recognise. What do you do first?","options":["Ignore it","Contact your bank straight away","Post about it","Wait a month"],"answer":1,"explanation":"The sooner your bank knows, the sooner it can help."},{"id":"df-q1","type":"mcq","prompt":"A shocking video of a famous person appears. What is the first check?","options":["Is it high definition?","Does it have many likes?","Do trusted news sites report it?"],"answer":2,"explanation":"Quality and likes can be faked. Trusted reports are a better check."},{"id":"df-q2","type":"tf","prompt":"If a video looks very realistic, it must be real.","answer":false,"explanation":"Modern deepfakes can look very real."},{"id":"df-q3","type":"saferisky","prompt":"Safe or risky?","text":"Sending money after a call that sounds like your relative, without checking another way.","answer":"risky","explanation":"Voices can be cloned. Call back on a number you already know."},{"id":"df-q4","type":"mcq","prompt":"What helps protect against voice clone scams?","options":["A family safe word and calling back on a known number","Answering quickly","Sending a small amount first","Hanging up and never answering"],"answer":0,"explanation":"A safe word and a call-back check out a caller."},{"id":"ai-q1","type":"mcq","prompt":"Which should you never type into a chatbot?","options":["Your card PIN","A question about homework","A recipe request","A joke request"],"answer":0,"explanation":"PINs and passwords should stay private."},{"id":"ai-q2","type":"tf","prompt":"AI chatbots are always correct.","answer":false,"explanation":"They can sound sure and still be wrong. Check important facts."},{"id":"ai-q3","type":"saferisky","prompt":"Safe or risky?","text":"Asking a chatbot for study tips without using your real name.","answer":"safe","explanation":"No private details are shared."},{"id":"ai-q4","type":"redflags","prompt":"Tap the details you should not give a chatbot.","text":"Hi, my name is [[Priya Shah]], I go to [[Leeds High School]] and my password is [[blue-moon-77]]. Can you help me revise?","explanation":"A full name, school and password are private."}]};</script>
+<script>
+/* xData logic: pure rules, no DOM. Works in browsers (window.XLogic) and Node (require). */
+(function (root, factory) {
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.XLogic = factory();
+})(typeof self !== 'undefined' ? self : this, function () {
+  'use strict';
+
+  const XP_PER_CORRECT = 10;
+  const MAX_HEARTS = 3;
+  const PASS_MARK = 0.6;
+
+  /* ---------- dates (local calendar days, as YYYY-MM-DD) ---------- */
+  function dateKey(d) {
+    const y = d.getFullYear(), m = String(d.getMonth() + 1).padStart(2, '0'), day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+  }
+  function parseKey(k) { const p = k.split('-').map(Number); return new Date(p[0], p[1] - 1, p[2], 12); }
+  function addDays(k, n) { const d = parseKey(k); d.setDate(d.getDate() + n); return dateKey(d); }
+  function daysBetween(a, b) { return Math.round((parseKey(b) - parseKey(a)) / 86400000); }
+
+  /* ---------- scoring ---------- */
+  function scoreLesson(correct, heartsLeft) {
+    return { xp: correct * XP_PER_CORRECT, stars: Math.max(0, Math.min(MAX_HEARTS, heartsLeft)) };
+  }
+  function levelInfo(xp) { return { level: Math.floor(xp / 100) + 1, into: xp % 100, size: 100 }; }
+  function passTest(correct, total) { return total > 0 && correct / total + 1e-9 >= PASS_MARK; }
+
+  /* ---------- streak ---------- */
+  function displayStreak(streak, last, today) {
+    if (!last) return 0;
+    return daysBetween(last, today) <= 1 ? streak : 0;
+  }
+  function nextStreak(streak, last, today) {
+    if (!last) return 1;
+    const gap = daysBetween(last, today);
+    if (gap <= 0) return Math.max(streak, 1);
+    if (gap === 1) return streak + 1;
+    return 1;
+  }
+
+  /* ---------- content helpers ---------- */
+  function orderLessons(content) {
+    const uo = {}; content.units.forEach(u => { uo[u.id] = u.order; });
+    return content.lessons.slice().sort((a, b) => (uo[a.unit] - uo[b.unit]) || (a.order - b.order));
+  }
+  function questionIds(lesson) {
+    const t = lesson.steps.find(s => s.type === 'test');
+    return t ? t.questions : [];
+  }
+  function articles(lesson) { return lesson.steps.filter(s => s.type === 'article'); }
+
+  /* ---------- questions ---------- */
+  function parseFlags(text) {
+    const chips = [];
+    text.split(/(\[\[.*?\]\])/).forEach(seg => {
+      if (!seg) return;
+      const m = seg.match(/^\[\[(.*)\]\]$/);
+      if (m) chips.push({ t: m[1], flag: true });
+      else seg.split(/\s+/).filter(Boolean).forEach(w => chips.push({ t: w, flag: false }));
+    });
+    return chips;
+  }
+  function isCorrect(q, sel) {
+    if (!sel || !sel.length) return false;
+    if (q.type === 'mcq') return sel.length === 1 && sel[0] === q.answer;
+    if (q.type === 'tf') return sel.length === 1 && sel[0] === (q.answer ? 0 : 1);
+    if (q.type === 'saferisky') return sel.length === 1 && sel[0] === (q.answer === 'safe' ? 0 : 1);
+    if (q.type === 'redflags') {
+      const want = parseFlags(q.text).map((c, i) => c.flag ? i : -1).filter(i => i >= 0);
+      const got = sel.slice().sort((a, b) => a - b);
+      return want.length === got.length && want.every((v, i) => v === got[i]);
+    }
+    return false;
+  }
+
+  /* ---------- state ---------- */
+  function newState(deviceId, today) {
+    return {
+      v: 1, device_id: deviceId, created_at: today, route: null, age_band: null,
+      xp: 0, streak: 0, best_streak: 0, last_active_date: null, xp_log: {},
+      youth: { progress: {}, badges: {} }, adult: { progress: {}, comments: [] },
+      tip: 0, events: []
+    };
+  }
+  function migrate(s, deviceId, today) {
+    if (!s || s.v !== 1) return newState(deviceId, today);
+    const base = newState(s.device_id || deviceId, s.created_at || today);
+    const out = Object.assign(base, s);
+    out.youth = Object.assign(base.youth, s.youth || {});
+    out.adult = Object.assign(base.adult, s.adult || {});
+    return out;
+  }
+
+  /* ---------- badges ---------- */
+  const BADGES = [
+    { id: 'first-lesson', title: 'First lesson', rule: 'Any lesson finished', icon: 'sprout' },
+    { id: 'streak-3', title: '3-day streak', rule: 'Streak of 3 or more days', icon: 'flame' },
+    { id: 'perfect', title: 'Perfect score', rule: 'All 4 questions right in one lesson', icon: 'star' },
+    { id: 'password-pro', title: 'Password pro', rule: 'Strong passwords finished', icon: 'key' },
+    { id: 'phish-spotter', title: 'Phish spotter', rule: 'Spot the phish finished', icon: 'hook' },
+    { id: 'deepfake-detective', title: 'Deepfake detective', rule: 'Deepfakes finished', icon: 'mask' },
+    { id: 'data-defender', title: 'Data defender', rule: 'All 6 lessons finished', icon: 'shield' }
+  ];
+  function badgeEarned(id, state, lessons) {
+    const p = state.youth.progress;
+    const done = id2 => !!(p[id2] && p[id2].completed_at);
+    const anyDone = lessons.some(l => done(l.id));
+    switch (id) {
+      case 'first-lesson': return anyDone;
+      case 'streak-3': return state.best_streak >= 3;
+      case 'perfect': return lessons.some(l => p[l.id] && p[l.id].best_score >= questionIds(l).length && done(l.id));
+      case 'password-pro': return done('passwords');
+      case 'phish-spotter': return done('phishing');
+      case 'deepfake-detective': return done('deepfakes');
+      case 'data-defender': return lessons.length > 0 && lessons.every(l => done(l.id));
+    }
+    return false;
+  }
+  function updateBadges(state, lessons, today) {
+    const fresh = [];
+    BADGES.forEach(b => {
+      if (!state.youth.badges[b.id] && badgeEarned(b.id, state, lessons)) { state.youth.badges[b.id] = today; fresh.push(b.id); }
+    });
+    return fresh;
+  }
+
+  /* ---------- under-18 route ---------- */
+  function completeYouthLesson(state, lessons, lesson, result, today) {
+    const sc = scoreLesson(result.correct, result.heartsLeft);
+    const before = levelInfo(state.xp).level;
+    const prev = state.youth.progress[lesson.id] || {};
+    state.xp += sc.xp;
+    state.xp_log[today] = (state.xp_log[today] || 0) + sc.xp;
+    state.streak = nextStreak(state.streak, state.last_active_date, today);
+    state.last_active_date = today;
+    state.best_streak = Math.max(state.best_streak, state.streak);
+    state.youth.progress[lesson.id] = {
+      steps_completed: lesson.steps.length,
+      best_score: Math.max(prev.best_score || 0, result.correct),
+      stars: Math.max(prev.stars || 0, sc.stars),
+      completed_at: prev.completed_at || today,
+      attempts: (prev.attempts || 0) + 1
+    };
+    const newBadges = updateBadges(state, lessons, today);
+    return { xp: sc.xp, stars: sc.stars, newBadges, levelUp: levelInfo(state.xp).level > before, level: levelInfo(state.xp).level };
+  }
+  function youthStatuses(lessons, state) {
+    let open = true;
+    return lessons.map(l => {
+      const done = !!(state.youth.progress[l.id] && state.youth.progress[l.id].completed_at);
+      let st;
+      if (done) st = 'complete'; else if (open) { st = 'available'; open = false; } else st = 'locked';
+      if (done) open = open; // completed lessons do not close the next one
+      return { id: l.id, status: st };
+    });
+  }
+  function unitMastery(content, lessons, state) {
+    return content.units.slice().sort((a, b) => a.order - b.order).map(u => {
+      const ls = lessons.filter(l => l.unit === u.id);
+      const total = ls.reduce((n, l) => n + questionIds(l).length, 0);
+      const best = ls.reduce((n, l) => n + ((state.youth.progress[l.id] || {}).best_score || 0), 0);
+      return { unit: u.id, title: u.title, pct: total ? Math.round(best / total * 100) : 0 };
+    });
+  }
+  function focusNext(lessons, state) {
+    const done = lessons.filter(l => state.youth.progress[l.id] && state.youth.progress[l.id].completed_at);
+    const weak = done.filter(l => state.youth.progress[l.id].best_score < questionIds(l).length);
+    if (weak.length) {
+      const w = weak.reduce((a, b) => state.youth.progress[b.id].best_score < state.youth.progress[a.id].best_score ? b : a);
+      return { kind: 'practise', lesson: w, best: state.youth.progress[w.id].best_score, of: questionIds(w).length };
+    }
+    const nxt = youthStatuses(lessons, state).find(s => s.status === 'available');
+    if (nxt) return { kind: 'next', lesson: lessons.find(l => l.id === nxt.id) };
+    return { kind: 'all-done' };
+  }
+  function weekBars(xpLog, today) {
+    const out = [];
+    for (let i = 6; i >= 0; i--) {
+      const k = addDays(today, -i);
+      out.push({ date: k, xp: xpLog[k] || 0, initial: 'SMTWTFS'[parseKey(k).getDay()] });
+    }
+    return out;
+  }
+  function streakRow(xpLog, today) { return weekBars(xpLog, today).map(b => ({ initial: b.initial, on: b.xp > 0 })); }
+  function youthTotals(lessons, state) {
+    const p = state.youth.progress;
+    return {
+      lessonsDone: lessons.filter(l => p[l.id] && p[l.id].completed_at).length,
+      stars: lessons.reduce((n, l) => n + ((p[l.id] || {}).stars || 0), 0)
+    };
+  }
+
+  /* ---------- 18+ route ---------- */
+  function markAdultStep(state, lesson, stepIndex, today) {
+    const p = state.adult.progress[lesson.id] || { steps_completed: 0, best_score: null, completed_at: null };
+    p.steps_completed = Math.max(p.steps_completed, Math.min(stepIndex + 1, lesson.steps.length));
+    if (p.steps_completed >= lesson.steps.length && !p.completed_at) p.completed_at = today;
+    state.adult.progress[lesson.id] = p;
+    return p;
+  }
+  function recordAdultTest(state, lesson, correct, total, today) {
+    const p = state.adult.progress[lesson.id] || { steps_completed: 0, best_score: null, completed_at: null };
+    p.best_score = p.best_score == null ? correct : Math.max(p.best_score, correct);
+    state.adult.progress[lesson.id] = p;
+    const passed = passTest(correct, total);
+    if (passed) markAdultStep(state, lesson, lesson.steps.length - 1, today);
+    return { passed, pct: Math.round(correct / total * 100) };
+  }
+  function adultStatus(lesson, state) {
+    const p = state.adult.progress[lesson.id];
+    if (!p || !p.steps_completed) return 'not-started';
+    return p.steps_completed >= lesson.steps.length ? 'complete' : 'in-progress';
+  }
+  function courseProgress(lessons, state) {
+    const total = lessons.reduce((n, l) => n + l.steps.length, 0);
+    const done = lessons.reduce((n, l) => n + ((state.adult.progress[l.id] || {}).steps_completed || 0), 0);
+    return { done, total, pct: total ? Math.round(done / total * 100) : 0 };
+  }
+  function weekProgress(content, lessons, state) {
+    return content.units.slice().sort((a, b) => a.order - b.order).map((u, i) => {
+      const ls = lessons.filter(l => l.unit === u.id);
+      const cp = courseProgress(ls, state);
+      return { unit: u.id, title: u.title, week: i + 1, pct: cp.pct };
+    });
+  }
+  function averageBestScore(lessons, state) {
+    const s = lessons.filter(l => (state.adult.progress[l.id] || {}).best_score != null)
+      .map(l => state.adult.progress[l.id].best_score / questionIds(l).length);
+    return s.length ? Math.round(s.reduce((a, b) => a + b, 0) / s.length * 100) : null;
+  }
+  function firstUnfinished(lessons, state) {
+    const l = lessons.find(x => adultStatus(x, state) !== 'complete');
+    if (!l) return null;
+    const p = state.adult.progress[l.id];
+    return { lesson: l, step: p ? Math.min(p.steps_completed, l.steps.length - 1) : 0 };
+  }
+  function statementUnlocked(lessons, state) { return courseProgress(lessons, state).pct === 100; }
+
+  /* ---------- comments and events ---------- */
+  function looksPersonal(text) {
+    return /\S+@\S+\.\S+/.test(text) || /(\+?\d[\d\s-]{8,}\d)/.test(text) || /\b[A-Z]{1,2}\d[A-Z\d]?\s*\d[A-Z]{2}\b/i.test(text);
+  }
+  const EVENT_NAMES = ['lesson_started', 'lesson_completed', 'question_answered', 'article_viewed', 'widget_used', 'discussion_posted'];
+  function logEvent(state, name, lessonId, today, ok) {
+    if (EVENT_NAMES.indexOf(name) < 0) return;
+    const e = { e: name, l: lessonId, d: today };
+    if (name === 'question_answered') e.ok = !!ok;
+    state.events.push(e);
+    if (state.events.length > 500) state.events.splice(0, state.events.length - 500);
+  }
+
+  /* ---------- password tester (rough guide only; never stored or sent) ---------- */
+  const COMMON = ['password', '123456', 'qwerty', 'letmein', 'admin', 'welcome', 'iloveyou', 'football', 'abc123', 'monkey', 'dragon', 'login', 'princess', 'sunshine', 'master'];
+  function passwordCheck(pw) {
+    if (!pw) return null;
+    const lower = pw.toLowerCase();
+    const letters = lower.replace(/[^a-z]/g, '');
+    const classes = [/[a-z]/, /[A-Z]/, /\d/, /[^A-Za-z0-9]/].filter(r => r.test(pw)).length;
+    const tips = [];
+    let score = pw.length < 8 ? 0 : pw.length < 10 ? 1 : pw.length < 12 ? 2 : pw.length < 14 ? 3 : 4;
+    const common = COMMON.some(c => lower.indexOf(c) >= 0) && pw.length < 16;
+    const sameChar = /^(.)\1+$/.test(pw);
+    const seq = /^(0123|1234|2345|3456|4567|5678|6789|abcd|qwer)/.test(lower) && pw.length < 16;
+    const words = pw.split(/[^A-Za-z]+/).filter(w => w.length >= 3);
+    if (classes === 1 && pw.length < 16) score -= 1;
+    if (common || sameChar || seq) score = 0;
+    if (words.length >= 3 && pw.length >= 14 && !common) score = 4;
+    score = Math.max(0, Math.min(4, score));
+    if (common) tips.push('This looks like a very common password.');
+    if (pw.length < 14 && words.length < 3) tips.push('Aim for 14 or more characters.');
+    if (words.length < 3) tips.push('Try three random words joined together.');
+    if (/\d{4}$/.test(pw) || /(19|20)\d\d/.test(pw)) tips.push('Avoid birthdays and years.');
+    const labels = ['Very weak', 'Weak', 'Okay', 'Good', 'Strong'];
+    return { score, label: labels[score], tips, letters: letters.length };
+  }
+
+  return {
+    XP_PER_CORRECT, MAX_HEARTS, PASS_MARK, BADGES, EVENT_NAMES,
+    dateKey, parseKey, addDays, daysBetween,
+    scoreLesson, levelInfo, passTest, displayStreak, nextStreak,
+    orderLessons, questionIds, articles, parseFlags, isCorrect,
+    newState, migrate, badgeEarned, updateBadges,
+    completeYouthLesson, youthStatuses, unitMastery, focusNext, weekBars, streakRow, youthTotals,
+    markAdultStep, recordAdultTest, adultStatus, courseProgress, weekProgress, averageBestScore, firstUnfinished, statementUnlocked,
+    looksPersonal, logEvent, passwordCheck
+  };
+});
+
+</script>
+<script>
+/* Inline SVG mascots: Pixel the fox (under 18) and xBot the robot (18+). No image files. */
+(function (root) {
+  'use strict';
+  const INK = '#1B2437';
+
+  function pixel(mood, cls) {
+    const mouth = mood === 'sad' ? 'M53 70 Q60 64 67 70' : 'M53 65 Q60 72 67 65';
+    return '<svg class="mascot pixel ' + (cls || '') + '" viewBox="0 0 120 130" role="img" aria-label="Pixel the fox">' +
+      '<ellipse cx="60" cy="124" rx="30" ry="5" fill="' + INK + '"/>' +
+      '<g class="tail"><path d="M86 100 C112 98 120 70 104 60 C102 76 96 86 84 90 Z" fill="#FF8C00" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>' +
+      '<path d="M104 60 C108 64 110 68 110 72 C106 70 103 66 104 60 Z" fill="#fff"/></g>' +
+      '<path d="M38 92 Q38 114 60 116 Q82 114 82 92 Q82 76 60 76 Q38 76 38 92Z" fill="#FF8C00" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>' +
+      '<ellipse cx="60" cy="100" rx="11" ry="9" fill="#fff"/>' +
+      '<path d="M26 42 L21 9 L52 28 Z" fill="#FF8C00" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>' +
+      '<path d="M94 42 L99 9 L68 28 Z" fill="#FF8C00" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/>' +
+      '<path d="M28 35 L26 19 L42 29 Z" fill="#FFB88C"/><path d="M92 35 L94 19 L78 29 Z" fill="#FFB88C"/>' +
+      '<ellipse cx="60" cy="52" rx="36" ry="30" fill="#FF8C00" stroke="' + INK + '" stroke-width="4"/>' +
+      '<path d="M25 56 Q60 80 95 56 Q82 72 60 74 Q38 72 25 56Z" fill="#fff"/>' +
+      '<g class="eyes"><ellipse class="eye" cx="46" cy="48" rx="4.5" ry="7" fill="' + INK + '"/><ellipse class="eye" cx="74" cy="48" rx="4.5" ry="7" fill="' + INK + '"/></g>' +
+      '<ellipse cx="60" cy="60" rx="5" ry="3.5" fill="' + INK + '"/>' +
+      '<path d="' + mouth + '" fill="none" stroke="' + INK + '" stroke-width="3" stroke-linecap="round"/>' +
+      '<circle cx="50" cy="31" r="4.5" fill="#FFC800" stroke="' + INK + '" stroke-width="2"/>' +
+      '<circle cx="60" cy="27" r="4.5" fill="#FF4B4B" stroke="' + INK + '" stroke-width="2"/>' +
+      '<circle cx="70" cy="31" r="4.5" fill="#58CC02" stroke="' + INK + '" stroke-width="2"/>' +
+      '</svg>';
+  }
+
+  function bot(cls) {
+    return '<svg class="mascot xbot ' + (cls || '') + '" viewBox="0 0 120 130" role="img" aria-label="xBot the robot">' +
+      '<ellipse cx="60" cy="124" rx="28" ry="5" fill="#263234"/>' +
+      '<ellipse cx="25" cy="100" rx="6" ry="11" fill="#D9DBD7" transform="rotate(14 25 100)"/>' +
+      '<ellipse cx="95" cy="100" rx="6" ry="11" fill="#D9DBD7" transform="rotate(-14 95 100)"/>' +
+      '<path d="M38 120 Q35 96 46 90 L74 90 Q85 96 82 120Z" fill="#BBBEB6"/>' +
+      '<rect x="50" y="101" width="20" height="6" rx="3" fill="#2B8AD6"/>' +
+      '<path d="M44 36 Q44 16 60 16 Q76 16 76 36Z" fill="#DCDDD9"/>' +
+      '<circle cx="50" cy="28" r="3.2" fill="#4CAF50"/><circle cx="60" cy="25" r="3.2" fill="#F5C518"/><circle cx="70" cy="28" r="3.2" fill="#EF4444"/>' +
+      '<rect x="20" y="32" width="80" height="54" rx="26" fill="#E6EAE8"/>' +
+      '<rect x="29" y="42" width="62" height="34" rx="17" fill="#9FB3B5"/>' +
+      '<g class="eyes"><ellipse class="eye" cx="47" cy="59" rx="4" ry="8" fill="#20292B"/><ellipse class="eye" cx="73" cy="59" rx="4" ry="8" fill="#20292B"/></g>' +
+      '</svg>';
+  }
+
+  /* App icons and small UI icons (decorative: always paired with text) */
+  const ICONS = {
+    home: '<path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/>',
+    chart: '<path d="M5 20V10m5 10V4m5 16v-7m5 7H3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    user: '<circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M4 21c1-5 5-6 8-6s7 1 8 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    swap: '<path d="M4 8h14l-3-3m5 11H6l3 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+    book: '<path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v14c-3-1-6-1-8 1-2-2-5-2-8-1z M12 6v14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+    trend: '<path d="M3 17l6-6 4 4 8-8m0 0h-5m5 0v5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+    flame: '<path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-4 3-7 1 1 2 2 2 3 1-2 1-5 1-8z"/>',
+    bolt: '<path d="M13 2 5 14h6l-1 8 8-12h-6z"/>',
+    heart: '<path d="M12 21C5 15 2 12 2 8a5 5 0 0 1 10-1 5 5 0 0 1 10 1c0 4-3 7-10 13z"/>',
+    star: '<path d="m12 2 3 7 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.8l1.8-7.3L1.5 9.6 9 9z"/>',
+    lock: '<path d="M7 10V7a5 5 0 0 1 10 0v3h1v11H6V10zm2 0h6V7a3 3 0 0 0-6 0z"/>',
+    close: '<path d="M5 5l14 14M19 5 5 19" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
+    back: '<path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>',
+    sound: '<path d="M4 9v6h4l5 4V5L8 9zm11 0a4 4 0 0 1 0 6m2-9a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+    check: '<path d="m5 12 5 5 9-10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+    sprout: '<path d="M12 21v-9m0 0c0-4-3-6-7-6 0 4 3 6 7 6zm0 2c0-4 3-7 7-7 0 4-3 7-7 7z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>',
+    key: '<circle cx="8" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 12h9m-3 0v4m-3-4v3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+    hook: '<path d="M12 3v11a4 4 0 0 1-8 0m8-11 0 0M9 6h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M12 14a4 4 0 0 0 8 0v-3" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>',
+    mask: '<path d="M4 5h16v7c0 5-4 8-8 8s-8-3-8-8z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M8 10h2m4 0h2M9 15c2 1.5 4 1.5 6 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
+    shield: '<path d="M12 3 4 6v6c0 5 3.500 8 8 9 4.500-1 8-4 8-9V6z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="m8.500 12 2.500 2.500 4.500-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'
+  };
+  function icon(name, cls) {
+    const filled = ['home', 'flame', 'bolt', 'heart', 'star', 'lock'].indexOf(name) >= 0;
+    return '<svg class="ic ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false"' + (filled ? ' fill="currentColor"' : '') + '>' + ICONS[name] + '</svg>';
+  }
+
+  root.XArt = { pixel: pixel, bot: bot, icon: icon };
+})(typeof self !== 'undefined' ? self : this);
+
+</script>
+<script>
+/* xData app: route picker, under-18 game path (Pixel), 18+ course path (xBot).
+   Content comes from JSON. Progress stays on the device. */
+(function () {
+  'use strict';
+  const L = window.XLogic, A = window.XArt, icon = A.icon;
+  const root = document.getElementById('app');
+  const KEY = 'xdata.v1';
+  let C = null, LS = [], QB = {}, S = null;
+  const UI = { screen: 'route', yl: null, al: null, at: null, certName: '', confirmDelete: false, from: 'route', lastKey: '', lastView: '', installEvt: null };
+  let WG = {}, wn = 0;
+
+  const today = () => window.__XDATA_TODAY || L.dateKey(new Date());
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const lessonById = id => LS.find(l => l.id === id);
+  const unitOf = l => C.units.find(u => u.id === l.unit);
+  const qs = l => L.questionIds(l).map(id => QB[id]);
+
+  /* ---------- storage ---------- */
+  function deviceId() {
+    try { const a = new Uint8Array(8); crypto.getRandomValues(a); return Array.from(a, b => b.toString(16).padStart(2, '0')).join(''); }
+    catch (e) { return Math.random().toString(16).slice(2, 18); }
+  }
+  function loadState() {
+    try { const raw = localStorage.getItem(KEY); if (raw) return L.migrate(JSON.parse(raw), deviceId(), today()); } catch (e) { /* use fresh state */ }
+    return L.newState(deviceId(), today());
+  }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* storage may be blocked */ } }
+  function ev(name, lessonId, ok) { L.logEvent(S, name, lessonId, today(), ok); save(); }
+
+  /* ---------- speech (device voice, British English) ---------- */
+  const canSpeak = () => typeof window !== 'undefined' && 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance === 'function';
+  function stopSpeech() { try { if (canSpeak()) window.speechSynthesis.cancel(); } catch (e) { /* ignore */ } }
+  function speak(text) {
+    if (!canSpeak()) return;
+    const synth = window.speechSynthesis;
+    if (synth.speaking) { synth.cancel(); return; }
+    const u = new window.SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 0.95;
+    const v = synth.getVoices().find(x => x.lang === 'en-GB'); if (v) u.voice = v;
+    synth.speak(u);
+  }
+  function stepSpeech(s) {
+    let t = s.title + '. ' + s.text;
+    const w = s.widget;
+    if (w && w.kind === 'hot') t += ' ' + w.parts.map(p => p[0] + (p[1] ? '. ' + p[1] : '')).join(' ');
+    if (w && w.kind === 'flow') t += ' ' + w.steps.map(x => x.title + '. ' + x.note).join(' ');
+    return t;
+  }
+
+  /* ---------- widgets ---------- */
+  function altList(items) {
+    return '<details class="alt"><summary>Text version</summary><ul>' + items.map(i => '<li>' + esc(i) + '</li>').join('') + '</ul></details>';
+  }
+  function widget(w) {
+    const id = 'w' + (++wn); WG[id] = w;
+    if (w.kind === 'hot') {
+      const chips = w.parts.map(p => p.length > 1
+        ? '<button type="button" class="chip hot" data-act="hot" data-note="' + esc(p[1]) + '" aria-pressed="false">' + esc(p[0]) + '</button>'
+        : '<span class="plain">' + esc(p[0]) + '</span>').join('');
+      const alt = w.parts.filter(p => p.length > 1).map(p => p[0] + ': ' + p[1]);
+      return '<div class="wgt" data-wid="' + id + '"><div class="chips">' + chips + '</div><p class="expl empty" aria-live="polite">Tap a highlighted part to see why.</p>' + altList(alt) + '</div>';
+    }
+    if (w.kind === 'meter') {
+      const checks = w.items.map((it, i) => '<label class="check"><input type="checkbox" data-meter="' + id + '" data-i="' + i + '"> <span>' + esc(it.text) + '</span></label>').join('');
+      return '<div class="wgt" data-wid="' + id + '"><h3>' + esc(w.title) + '</h3><div class="checks">' + checks + '</div>' +
+        '<div class="meter-read"><span class="m-label">None selected</span><span class="m-pct">0%</span></div>' +
+        '<div class="meter-track" role="progressbar" aria-label="' + esc(w.title) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="meter-fill"></div></div>' +
+        '<p class="expl empty" aria-live="polite">Tick what an app might ask for.</p></div>';
+    }
+    if (w.kind === 'flow') {
+      const steps = w.steps.map((s, i) =>
+        (i ? '<div class="flow-arrow" aria-hidden="true">' + icon('back') + '</div>' : '') +
+        '<button type="button" class="flow-step" data-act="flow" aria-expanded="false">' + esc(s.title) + '<span class="fnote" hidden>' + esc(s.note) + '</span></button>').join('');
+      return '<div class="wgt" data-wid="' + id + '"><div class="flow">' + steps + '</div>' + altList(w.steps.map(s => s.title + ': ' + s.note)) + '</div>';
+    }
+    if (w.kind === 'password') {
+      return '<div class="wgt" data-wid="' + id + '"><label for="pw-' + id + '" class="eyebrow">Try a made-up password</label>' +
+        '<input id="pw-' + id + '" class="pw-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-in="pw">' +
+        '<div class="pw-meter l0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>' +
+        '<p class="expl empty pw-read" aria-live="polite">Type to test. Nothing you type is saved or sent.</p>' +
+        '<p class="small muted">A rough guide only. Never type a password you really use into any website or app.</p></div>';
+    }
+    return '';
+  }
+  function widgetUsed(el) {
+    const w = el.closest('[data-wid]');
+    if (w && !w.dataset.used) { w.dataset.used = '1'; ev('widget_used', currentLessonId()); }
+  }
+  function currentLessonId() { return (UI.yl && UI.screen === 'ylesson') ? UI.yl.id : (UI.al ? UI.al.id : ''); }
+
+  /* ---------- questions (shared by both routes) ---------- */
+  const TYPE_LABEL = { mcq: 'Multiple choice', tf: 'True or false', saferisky: 'Safe or risky', redflags: 'Spot the red flags' };
+  function correctIndex(q) { return q.type === 'mcq' ? q.answer : q.type === 'tf' ? (q.answer ? 0 : 1) : (q.answer === 'safe' ? 0 : 1); }
+  function qBody(q, sel, checked) {
+    if (q.type === 'redflags') {
+      const chips = L.parseFlags(q.text).map((c, i) => {
+        const on = sel.indexOf(i) >= 0; let cls = 'chip';
+        if (checked) { if (c.flag) cls += ' ok'; else if (on) cls += ' bad'; } else if (on) cls += ' sel';
+        return '<button type="button" class="' + cls + '" data-act="chip" data-i="' + i + '" aria-pressed="' + on + '"' + (checked ? ' disabled' : '') + '>' + esc(c.t) + '</button>';
+      }).join('');
+      return '<div class="wgt"><div class="chips">' + chips + '</div></div>';
+    }
+    const opts = q.type === 'mcq' ? q.options : q.type === 'tf' ? ['True', 'False'] : ['Safe', 'Risky'];
+    const ci = correctIndex(q);
+    const scen = q.type === 'saferisky' ? '<p class="scenario">' + esc(q.text) + '</p>' : '';
+    return scen + '<div class="opts">' + opts.map((o, i) => {
+      let cls = 'opt';
+      if (checked) { if (i === ci) cls += ' ok'; else if (sel.indexOf(i) >= 0) cls += ' bad'; } else if (sel.indexOf(i) >= 0) cls += ' sel';
+      return '<button type="button" class="' + cls + '" data-act="pick" data-i="' + i + '" aria-pressed="' + (sel.indexOf(i) >= 0) + '"' + (checked ? ' disabled' : '') + '>' + esc(o) + '</button>';
+    }).join('') + '</div>';
+  }
+  function toggleSel(sel, q, i) {
+    if (q.type === 'redflags') { const k = sel.indexOf(i); if (k >= 0) sel.splice(k, 1); else sel.push(i); return sel; }
+    return [i];
+  }
+
+  /* ---------- shared pieces ---------- */
+  const pbar = (pct, cls) => '<div class="pbar ' + (cls || '') + '" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div>';
+  function tabbar(kind) {
+    const tabs = kind === 'youth'
+      ? [['learn', 'home', 'Learn'], ['dashboard', 'chart', 'Dashboard'], ['me', 'user', 'Me'], ['route', 'swap', 'Switch']]
+      : [['course', 'book', 'Course'], ['aprogress', 'trend', 'Progress'], ['route', 'swap', 'Switch']];
+    return '<nav class="tabbar" aria-label="Main">' + tabs.map(t =>
+      '<button type="button" class="tab" data-act="tab" data-t="' + t[0] + '"' + (UI.screen === t[0] ? ' aria-current="page"' : '') + '>' + icon(t[1]) + '<span>' + t[2] + '</span></button>').join('') + '</nav>';
+  }
+  function yhead() {
+    const st = L.displayStreak(S.streak, S.last_active_date, today());
+    return '<header class="ybar pad">' + A.pixel('happy') +
+      '<span class="stat" aria-label="Streak: ' + st + ' days">' + icon('flame') + st + '</span>' +
+      '<span class="stat" aria-label="' + S.xp + ' XP">' + icon('bolt') + S.xp + ' XP</span></header>';
+  }
+  function ahead(left, right) {
+    return '<div class="atop pad"><div class="brand">' + A.bot() + '<span>xData</span></div>' + (right || '') + '</div>';
+  }
+
+  /* ---------- route picker ---------- */
+  function rRoute() {
+    const inst = UI.installEvt ? '<button type="button" class="link" data-act="install">Install this app</button>' : '';
+    const back = S.route ? '<button type="button" class="link" data-act="resume">Back to my path</button>' : '';
+    return '<div class="shell"><div class="route-screen pad"><h1>xData</h1><p class="lead">' + esc(C.app.tagline) + '</p>' +
+      '<div class="route-cards">' +
+      '<section class="route-card" aria-label="Under 18">' + A.pixel('happy') + '<div class="rc-body"><h2>Under 18</h2><p>Games, XP, streaks and Pixel the fox.</p><button type="button" class="btn" data-act="route" data-r="youth">Play</button></div></section>' +
+      '<section class="route-card" aria-label="18 and over">' + A.bot() + '<div class="rc-body"><h2>18 and over</h2><p>An online course with articles, discussion and tests.</p><button type="button" class="btn btn-course" data-act="route" data-r="adult">Start course</button></div></section>' +
+      '</div><div class="route-foot"><p>Pick the path for your age. We store an age band, never your date of birth. The full app will check age at sign-up.</p>' +
+      back + '<button type="button" class="link" data-act="privacy">Privacy and your data</button>' + inst + '</div></div></div>';
+  }
+
+  /* ---------- under-18: learn ---------- */
+  function rLearn() {
+    const st = L.youthStatuses(LS, S), byId = {}; st.forEach(s => { byId[s.id] = s.status; });
+    const tips = C.tips, tip = tips[S.tip % tips.length];
+    const offs = [0, 46, 0, -46]; let gi = 0;
+    const units = C.units.slice().sort((a, b) => a.order - b.order).map((u, ui) => {
+      const nodes = LS.filter(l => l.unit === u.id).map(l => {
+        const status = byId[l.id], off = offs[gi % 4]; gi++;
+        const p = S.youth.progress[l.id] || {};
+        let inner;
+        if (status === 'complete') inner = '<span class="stars">' + [1, 2, 3].map(n => icon('star', n > (p.stars || 0) ? 'off' : '')).join('') + '</span>';
+        else if (status === 'locked') inner = icon('lock');
+        else inner = icon('star');
+        const label = l.title + ', ' + (status === 'complete' ? 'complete, ' + (p.stars || 0) + ' of 3 stars' : status);
+        return '<div class="node-wrap" style="transform:translateX(' + off + 'px)">' +
+          (status === 'available' ? '<span class="start-marker">START</span><span class="path-pixel" aria-hidden="true">' + A.pixel('happy') + '</span>' : '') +
+          '<button type="button" class="node ' + status + '" data-act="' + (status === 'locked' ? 'locked' : 'startY') + '" data-id="' + l.id + '" aria-label="' + esc(label) + '">' + inner + '</button>' +
+          '<span class="node-label">' + esc(l.title) + '</span></div>';
+      }).join('');
+      return '<section aria-label="' + esc(u.title) + '"><div class="unit-banner" style="background:' + u.colour + '"><div class="eyebrow">Section 1, Unit ' + (ui + 1) + '</div><h2>' + esc(u.title) + '</h2></div><div class="path">' + nodes + '</div></section>';
+    }).join('');
+    return '<div class="shell youth">' + yhead() + '<main class="main pad">' +
+      '<button type="button" class="tip" data-act="tip">' + A.pixel('happy') + '<span>' + esc(tip) + '</span></button>' + units + '</main>' + tabbar('youth') + '</div>';
+  }
+
+  /* ---------- under-18: lesson player ---------- */
+  function rYLesson() {
+    const ss = UI.yl, lesson = lessonById(ss.id), arts = L.articles(lesson), qList = qs(lesson), total = arts.length + qList.length;
+    if (ss.done) return rYDone(ss.done, lesson);
+    if (ss.out) {
+      return '<div class="shell youth"><main class="main pad"><div class="result-card">' + A.pixel('sad') + '<h1>Out of hearts</h1><p>No worries. Have another go and use what you learned. Hearts come back with every lesson and are never for sale.</p>' +
+        '<button type="button" class="btn btn-block" data-act="yretry">Try again</button><button type="button" class="btn btn-ghost btn-block" data-act="tab" data-t="learn">Back to the path</button></div></main></div>';
+    }
+    const i = ss.idx, pct = Math.round((i + (ss.checked ? 1 : 0)) / total * 100);
+    const top = '<div class="lesson-top pad"><button type="button" class="xbtn" data-act="yquit" aria-label="Leave lesson">' + icon('close') + '</button>' + pbar(pct) +
+      '<span class="stat heart" aria-label="' + ss.hearts + ' hearts left">' + icon('heart') + ss.hearts + '</span></div>';
+    if (ss.quit) {
+      return '<div class="shell youth">' + top + '<main class="main pad"><div class="confirm" role="alertdialog" aria-label="Leave lesson"><p><b>Leave this lesson?</b> Progress in this lesson will not be saved.</p><div class="row"><button type="button" class="btn" data-act="ystay">Stay</button><button type="button" class="btn btn-red" data-act="yleave">Leave</button></div></div></main></div>';
+    }
+    let body, bottom, view;
+    if (i < arts.length) {
+      const s = arts[i]; view = 'a' + i;
+      body = '<div class="lesson-body pad article"><div class="eyebrow">Lesson · Part ' + (i + 1) + ' of ' + arts.length + '</div>' +
+        '<div class="bubble-row">' + A.pixel('happy') + '<div class="bubble"><h2>' + esc(s.title) + '</h2><p class="text">' + esc(s.text) + '</p></div></div>' +
+        (canSpeak() ? '<button type="button" class="listen" data-act="listen" data-i="' + i + '">' + icon('sound') + 'Listen</button>' : '') +
+        (s.widget ? widget(s.widget) : '') + '</div>';
+      bottom = '<div class="bottom pad"><button type="button" class="btn" data-act="ynext">Continue</button></div>';
+    } else {
+      const qi = i - arts.length, q = qList[qi]; view = 'q' + qi;
+      body = '<div class="lesson-body pad q"><div class="eyebrow">Quiz · Question ' + (qi + 1) + ' of ' + qList.length + '</div><div class="eyebrow">' + TYPE_LABEL[q.type] + '</div><h2>' + esc(q.prompt) + '</h2>' + qBody(q, ss.sel, ss.checked) + '</div>';
+      if (!ss.checked) bottom = '<div class="bottom pad"><button type="button" class="btn" data-act="ycheck"' + (ss.sel.length ? '' : ' disabled') + '>Check</button></div>';
+      else {
+        const last = qi === qList.length - 1 && ss.hearts > 0;
+        const praise = ['Nice one!', 'Spot on!', 'Well done!', 'Great spot!'][qi % 4];
+        bottom = '<div class="sheet pad ' + (ss.right ? 'ok' : 'bad') + '" role="status"><div class="sheet-head">' + A.pixel(ss.right ? 'happy' : 'sad') + '<div><h3>' + (ss.right ? praise : 'Not quite') + '</h3><p>' + esc(q.explanation) + '</p></div></div>' +
+          '<button type="button" class="btn ' + (ss.right ? '' : 'btn-red') + '" data-act="ycont">' + (last ? 'Finish' : 'Continue') + '</button></div>';
+      }
+    }
+    return '<div class="shell youth" data-view="' + view + '" data-lesson="' + lesson.id + '">' + top + body + bottom + '</div>';
+  }
+  function rYDone(res, lesson) {
+    const stars = [1, 2, 3].map(n => icon('star', n > res.stars ? 'off' : '')).join('');
+    const names = res.newBadges.map(id => L.BADGES.find(b => b.id === id).title);
+    return '<div class="shell youth"><main class="main pad"><div class="result-card">' + A.pixel('happy', 'pop') + '<h1>Lesson complete!</h1><p class="muted">' + esc(lesson.title) + '</p>' +
+      '<div class="big-stars pop" role="img" aria-label="' + res.stars + ' of 3 stars">' + stars + '</div>' +
+      '<p><span class="tag">+' + res.xp + ' XP</span></p>' +
+      (res.levelUp ? '<p><b>Level up!</b> You are now level ' + res.level + '.</p>' : '') +
+      (names.length ? '<p><b>New badge' + (names.length > 1 ? 's' : '') + ':</b> ' + esc(names.join(', ')) + '</p>' : '') +
+      '<button type="button" class="btn btn-block" data-act="tab" data-t="learn">Continue</button></div></main></div>';
+  }
+
+  /* ---------- under-18: dashboard ---------- */
+  function rDash() {
+    const lv = L.levelInfo(S.xp), tot = L.youthTotals(LS, S), st = L.displayStreak(S.streak, S.last_active_date, today());
+    const bars = L.weekBars(S.xp_log, today()), max = Math.max.apply(null, bars.map(b => b.xp).concat([10]));
+    const flames = L.streakRow(S.xp_log, today());
+    const mastery = L.unitMastery(C, LS, S);
+    const focus = L.focusNext(LS, S);
+    let focusHtml;
+    if (focus.kind === 'practise') focusHtml = '<p>Practise <b>' + esc(focus.lesson.title) + '</b> (best ' + focus.best + '/' + focus.of + ')</p><button type="button" class="btn btn-blue" data-act="startY" data-id="' + focus.lesson.id + '">Practise</button>';
+    else if (focus.kind === 'next') focusHtml = '<p>Next up: <b>' + esc(focus.lesson.title) + '</b></p><button type="button" class="btn btn-blue" data-act="startY" data-id="' + focus.lesson.id + '">Start</button>';
+    else focusHtml = '<p>You finished every lesson with full marks. Replay any lesson from the path.</p>';
+    const unitColour = {}; C.units.forEach(u => { unitColour[u.id] = u.colour; });
+    return '<div class="shell youth">' + yhead() + '<main class="main pad">' +
+      '<div class="levelcard">' + A.pixel('happy') + '<div><h2>Level ' + lv.level + '</h2><div class="xpbar" role="progressbar" aria-label="XP into this level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + lv.into + '"><i style="width:' + lv.into + '%"></i></div><span class="small muted">' + lv.into + ' / 100 XP to the next level</span></div></div>' +
+      '<div class="tiles"><div class="tile"><b>' + st + '</b><span>Day streak</span></div><div class="tile"><b>' + S.xp + '</b><span>Total XP</span></div>' +
+      '<div class="tile"><b>' + tot.lessonsDone + '/' + LS.length + '</b><span>Lessons done</span></div><div class="tile"><b>' + tot.stars + '</b><span>Stars</span></div></div>' +
+      '<section class="card"><h2>XP this week</h2><div class="bars">' + bars.map(b => '<div><span>' + b.xp + '</span><i class="' + (b.xp ? '' : 'zero') + '" style="height:' + Math.round(b.xp / max * 80) + 'px"></i><span>' + b.initial + '</span></div>').join('') + '</div></section>' +
+      '<section class="card"><h2>Streak</h2><div class="flames">' + flames.map(f => '<span><span class="dot ' + (f.on ? 'on' : '') + '">' + icon('flame') + '</span>' + f.initial + '</span>').join('') + '</div></section>' +
+      '<section class="card"><h2>Topic mastery</h2>' + mastery.map(m => '<div class="mrow"><div class="top"><span>' + esc(m.title) + '</span><b>' + m.pct + '%</b></div><div class="track"><i style="width:' + m.pct + '%;background:' + unitColour[m.unit] + '"></i></div></div>').join('') + '</section>' +
+      '<section class="card"><h2>Badges</h2><div class="badges">' + L.BADGES.map(b => {
+        const got = S.youth.badges[b.id];
+        return '<div class="badge ' + (got ? '' : 'locked') + '"><span class="disc">' + icon(got ? b.icon : 'lock') + '</span>' + esc(b.title) + '<small>' + esc(b.rule) + '</small></div>';
+      }).join('') + '</div></section>' +
+      '<section class="card focus"><h2>Focus next</h2>' + focusHtml + '</section></main>' + tabbar('youth') + '</div>';
+  }
+
+  /* ---------- under-18: me ---------- */
+  function rMe() {
+    const lv = L.levelInfo(S.xp);
+    return '<div class="shell youth">' + yhead() + '<main class="main pad">' +
+      '<div class="levelcard">' + A.pixel('happy') + '<div><h2>You</h2><span class="muted">Level ' + lv.level + ' · ' + S.xp + ' XP</span></div></div>' +
+      '<section class="card"><div class="list">' +
+      '<button type="button" data-act="privacy"><span>Privacy and your data</span>' + icon('back', 'flip') + '</button>' +
+      '<button type="button" data-act="tab" data-t="route"><span>Switch path</span>' + icon('swap') + '</button></div></section>' +
+      '<section class="card"><h3>Good to know</h3><p class="small">Pixel moves less when your device asks for reduced motion. The Listen button reads lessons aloud. If something online worries you, talk to someone you trust. Childline is free on 0800 1111.</p></section>' +
+      '</main>' + tabbar('youth') + '</div>';
+  }
+
+  /* ---------- 18+: course ---------- */
+  function rCourse() {
+    const cp = L.courseProgress(LS, S);
+    const btn = cp.pct === 0 ? 'Start course' : cp.pct === 100 ? 'Review course' : 'Continue learning';
+    const weeks = C.units.slice().sort((a, b) => a.order - b.order).map((u, wi) => {
+      const rows = LS.filter(l => l.unit === u.id).map(l => {
+        const status = L.adultStatus(l, S), p = S.adult.progress[l.id] || {};
+        const txt = status === 'complete' ? 'Complete' : status === 'in-progress' ? 'In progress · ' + p.steps_completed + ' of ' + l.steps.length + ' steps' : 'Not started';
+        const b = status === 'complete' ? 'Review' : status === 'in-progress' ? 'Continue' : 'Start';
+        return '<div class="lrow"><span class="radio ' + (status === 'complete' ? 'done' : '') + '" aria-hidden="true">' + (status === 'complete' ? icon('check') : '') + '</span>' +
+          '<div class="info"><b>' + esc(l.title) + '</b><span class="st">' + txt + '</span></div>' +
+          '<button type="button" class="btn ' + (status === 'complete' ? 'btn-outline' : 'btn-course') + '" data-act="openA" data-id="' + l.id + '" aria-label="' + b + ': ' + esc(l.title) + '">' + b + '</button></div>';
+      }).join('');
+      return '<section class="week"><div class="eyebrow">Week ' + (wi + 1) + '</div><h2>' + esc(u.title) + '</h2>' + rows + '</section>';
+    }).join('');
+    return '<div class="shell adult">' + ahead() + '<div class="banner pad"><div class="eyebrow">Online course · Free</div><h1>' + esc(C.course.title) + '</h1><p>' + esc(C.course.blurb) + '</p>' +
+      '<div class="row">' + pbar(cp.pct, 'adult') + '<span>' + cp.pct + '%</span></div><button type="button" class="btn btn-course btn-block" data-act="continueA">' + btn + '</button></div>' +
+      '<main class="main pad"><h2>Course content</h2>' + weeks + '<button type="button" class="link" data-act="privacy">Privacy and your data</button></main>' + tabbar('adult') + '</div>';
+  }
+  function bubbles(lesson, step, p) {
+    return '<div class="bubbles pad" role="group" aria-label="Lesson steps">' + lesson.steps.map((s, i) => {
+      const done = i < p.steps_completed, cur = i === step;
+      return '<button type="button" class="bub ' + (done ? 'done ' : '') + (cur ? 'cur' : '') + '" data-act="astep" data-i="' + i + '"' + (i > p.steps_completed ? ' disabled' : '') +
+        ' aria-label="Step ' + (i + 1) + ', ' + s.type + (done ? ', complete' : '') + '"' + (cur ? ' aria-current="step"' : '') + '>' + (done ? icon('check') : (i + 1)) + '</button>';
+    }).join('') + '</div>';
+  }
+  function rALesson() {
+    const al = UI.al, lesson = lessonById(al.id), p = S.adult.progress[lesson.id] || { steps_completed: 0 };
+    const step = al.step, s = lesson.steps[step], u = unitOf(lesson), week = C.units.slice().sort((a, b) => a.order - b.order).findIndex(x => x.id === u.id) + 1;
+    const head = '<div class="ahead pad"><button type="button" class="back" data-act="aback">' + icon('back') + 'Course</button><span class="eyebrow">Week ' + week + ' · ' + esc(lesson.title) + '</span></div>' + bubbles(lesson, step, p);
+    const label = (n, t) => '<div class="eyebrow">Step ' + n + ' · ' + t + '</div>';
+    const prev = '<button type="button" class="btn btn-outline" data-act="aprev"' + (step === 0 ? ' disabled' : '') + '>Previous</button>';
+    let body, bottom, view;
+    if (s.type === 'article') {
+      view = 'a' + step;
+      body = '<div class="lesson-body pad article">' + label(step + 1, 'Article') + '<h2>' + esc(s.title) + '</h2><p class="text">' + esc(s.text) + '</p>' +
+        (canSpeak() ? '<button type="button" class="listen" data-act="listen" data-i="' + step + '">' + icon('sound') + 'Listen to this step</button>' : '') + (s.widget ? widget(s.widget) : '') + '</div>';
+      bottom = '<div class="bottom pad">' + prev + '<button type="button" class="btn btn-course" data-act="acomplete">Mark as complete</button></div>';
+    } else if (s.type === 'discussion') {
+      view = 'd';
+      const mine = S.adult.comments.filter(c => c.lesson_id === lesson.id && c.status !== 'removed');
+      body = '<div class="lesson-body pad">' + label(step + 1, 'Discussion') + '<h2>Join the discussion</h2><p class="text">' + esc(s.prompt) + '</p>' +
+        '<label class="sr" for="cbox">Your reflection</label><textarea id="cbox" class="cbox" data-in="draft" placeholder="Write your thoughts">' + esc(al.draft || '') + '</textarea>' +
+        (al.warn ? '<p class="warn" role="alert">' + esc(al.warn) + '</p>' : '') +
+        '<button type="button" class="btn btn-outline btn-block" data-act="post">Post comment</button>' +
+        '<p class="small muted"><b>Comments are saved on this device only.</b> Please do not include personal details.</p>' +
+        mine.map(c => '<div class="comment"><span class="av" aria-hidden="true">You</span><p>' + esc(c.body) + '</p></div>').join('') + '</div>';
+      bottom = '<div class="bottom pad">' + prev + '<button type="button" class="btn btn-course" data-act="acomplete">Mark as complete</button></div>';
+    } else {
+      const at = UI.at, list = qs(lesson);
+      view = 't' + (at ? (at.result ? 'r' : at.qi) : 'i');
+      if (!at) {
+        const best = p.best_score != null ? '<p class="tag">Best score: ' + p.best_score + ' of ' + list.length + '</p>' : '';
+        body = '<div class="lesson-body pad">' + label(step + 1, 'Test') + '<h2>Check what you learned</h2><p class="text">' + list.length + ' questions. You need ' + Math.round(C.course.passMark * 100) + '% to pass. Retake as often as you like. Your best score is kept.</p>' + best + '</div>';
+        bottom = '<div class="bottom pad">' + prev + '<button type="button" class="btn btn-course" data-act="astart">Start test</button></div>';
+      } else if (at.result) {
+        const r = at.result, next = LS[LS.findIndex(l => l.id === lesson.id) + 1];
+        body = '<div class="lesson-body pad"><div class="result-card">' + A.bot() + '<h1>' + at.correct + ' of ' + list.length + ' · ' + r.pct + '%</h1>' +
+          '<p>' + (r.passed ? 'You passed. This lesson is complete.' : 'Not a pass yet. You need ' + Math.round(C.course.passMark * 100) + '%. Review the articles and try again.') + '</p>' +
+          '<p class="tag">Best score: ' + (S.adult.progress[lesson.id].best_score) + ' of ' + list.length + '</p></div></div>';
+        bottom = '<div class="bottom pad">' + (r.passed
+          ? '<button type="button" class="btn btn-outline" data-act="aback">Back to course</button>' + (next ? '<button type="button" class="btn btn-course" data-act="openA" data-id="' + next.id + '">Next lesson</button>' : '')
+          : '<button type="button" class="btn btn-outline" data-act="areview">Review</button><button type="button" class="btn btn-course" data-act="astart">Retake test</button>') + '</div>';
+      } else {
+        const q = list[at.qi];
+        body = '<div class="lesson-body pad q">' + label(step + 1, 'Test · Question ' + (at.qi + 1) + ' of ' + list.length) + '<div class="eyebrow">' + TYPE_LABEL[q.type] + '</div><h2>' + esc(q.prompt) + '</h2>' + qBody(q, at.sel, at.checked) +
+          (at.checked ? '<div class="feedback ' + (at.right ? 'ok' : 'bad') + '" role="status"><b>' + (at.right ? 'Correct' : 'Not quite') + '</b><p>' + esc(q.explanation) + '</p></div>' : '') + '</div>';
+        bottom = '<div class="bottom pad">' + (!at.checked
+          ? '<button type="button" class="btn btn-course" data-act="acheck"' + (at.sel.length ? '' : ' disabled') + '>Check answer</button>'
+          : '<button type="button" class="btn btn-course" data-act="anext">' + (at.qi === list.length - 1 ? 'See results' : 'Next question') + '</button>') + '</div>';
+      }
+    }
+    return '<div class="shell adult" data-view="' + view + '" data-lesson="' + lesson.id + '">' + ahead() + head + body + bottom + '</div>';
+  }
+  function rAProgress() {
+    const cp = L.courseProgress(LS, S), done = LS.filter(l => L.adultStatus(l, S) === 'complete').length, avg = L.averageBestScore(LS, S);
+    const weeks = L.weekProgress(C, LS, S), unlocked = L.statementUnlocked(LS, S);
+    return '<div class="shell adult">' + ahead() + '<main class="main pad"><h1>Your progress</h1>' +
+      '<div class="tiles"><div class="tile"><b>' + cp.pct + '%</b><span>Course complete</span></div><div class="tile"><b>' + done + '/' + LS.length + '</b><span>Lessons done</span></div>' +
+      '<div class="tile"><b>' + (avg == null ? '–' : avg + '%') + '</b><span>Average test score</span></div><div class="tile"><b>' + S.adult.comments.length + '</b><span>Comments posted</span></div></div>' +
+      '<section class="card"><h2>Progress by week</h2>' + weeks.map(w => '<div class="mrow"><div class="top"><span>Week ' + w.week + ': ' + esc(w.title) + '</span><b>' + w.pct + '%</b></div><div class="track"><i style="width:' + w.pct + '%;background:var(--magenta)"></i></div></div>').join('') + '</section>' +
+      '<section class="pcard ' + (unlocked ? 'ready' : '') + '"><h2>Statement of Participation</h2>' +
+      (unlocked ? '<p>You finished the whole course. Add your name to get your statement.</p><button type="button" class="btn btn-course" data-act="cert">Get my statement</button>' : '<p class="muted">Complete all ' + LS.length + ' lessons to unlock it.</p>') + '</section></main>' + tabbar('adult') + '</div>';
+  }
+  function certDate() { return L.parseKey(today()).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
+  function rCert() {
+    const standalone = !!window.XDATA_STANDALONE;
+    return '<div class="shell adult">' + ahead() + '<main class="main pad"><div class="ahead no-print"><button type="button" class="back" data-act="tab" data-t="aprogress">' + icon('back') + 'Progress</button></div>' +
+      '<div class="field no-print"><label for="certname">Name on the statement</label><input id="certname" data-in="certname" autocomplete="off" value="' + esc(UI.certName) + '" placeholder="Your name"><span class="small muted">Your name is used here only and is not saved.</span></div>' +
+      '<div class="cert" id="cert">' + A.bot() + '<p class="eyebrow">xData</p><h1>Statement of Participation</h1><p>This statement shows that</p><div class="who" id="certwho">' + esc(UI.certName) + '</div>' +
+      '<p>completed all ' + LS.length + ' lessons of <b>' + esc(C.course.title) + '</b> on ' + certDate() + '.</p><p class="small">This is a statement of participation, not an accredited qualification.</p></div>' +
+      (standalone ? '<p class="small muted no-print">Print and download work in the installed app.</p>' : '<div class="bottom no-print" style="position:static;border:0;padding:0"><button type="button" class="btn btn-outline" data-act="print">Print or save as PDF</button><button type="button" class="btn btn-course" data-act="download">Download image</button></div>') +
+      '</main></div>';
+  }
+  function certSvg() {
+    const name = UI.certName || 'Learner';
+    const x = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700" font-family="Arial, sans-serif"><rect width="1000" height="700" fill="#fff"/><rect x="24" y="24" width="952" height="652" fill="none" stroke="#22103A" stroke-width="6"/>' +
+      '<text x="500" y="150" text-anchor="middle" font-size="26" fill="#8F0069" letter-spacing="6">XDATA</text><text x="500" y="230" text-anchor="middle" font-size="54" font-weight="700" fill="#22103A">Statement of Participation</text>' +
+      '<text x="500" y="300" text-anchor="middle" font-size="24" fill="#1B2437">This statement shows that</text><text x="500" y="380" text-anchor="middle" font-size="46" font-weight="700" fill="#1B2437">' + x(name) + '</text><line x1="250" y1="400" x2="750" y2="400" stroke="#C2008F" stroke-width="3"/>' +
+      '<text x="500" y="460" text-anchor="middle" font-size="24" fill="#1B2437">completed all ' + LS.length + ' lessons of ' + x(C.course.title) + '</text><text x="500" y="500" text-anchor="middle" font-size="24" fill="#1B2437">on ' + certDate() + '.</text>' +
+      '<text x="500" y="600" text-anchor="middle" font-size="18" fill="#4F5B73">A statement of participation, not an accredited qualification.</text></svg>';
+  }
+
+  /* ---------- privacy and data ---------- */
+  function rPrivacy() {
+    const kind = S.route === 'adult' ? 'adult' : 'youth';
+    const sends = !!C.app.eventsEndpoint;
+    const head = kind === 'adult' ? ahead() : yhead();
+    const ls = LS.map(l => '<li>' + esc(l.title) + ': ' + (l.status === 'draft' ? 'draft, awaiting review' : 'reviewed ' + esc(l.reviewed)) + '. Sources: ' + esc(l.sources.join('; ')) + '.</li>').join('');
+    return '<div class="shell ' + kind + '">' + head + '<main class="main pad"><div class="ahead"><button type="button" class="back" data-act="pback">' + icon('back') + 'Back</button></div>' +
+      '<h1>Privacy and your data</h1><div class="prose">' +
+      '<h3>What we keep</h3><ul><li>An age band (under 18 or 18 and over), never your date of birth.</li><li>Your progress, XP, streak and badges.</li><li>A random device code, so counts do not use your name.</li><li>Comments you write (18+ course only), saved on this device.</li></ul>' +
+      '<h3>Where it lives</h3><p>' + (sends ? 'Your progress stays on this device. Anonymous counts (which lessons were started or finished, and whether answers were right) are sent to help improve the lessons. They carry a random code, a lesson and a date, nothing else.' : 'Everything stays on this device. Nothing is sent anywhere in this version.') + '</p>' +
+      '<h3>What we never do</h3><ul><li>No adverts.</li><li>No selling data.</li><li>No third-party tracking.</li><li>No public chat or comments for under 18s.</li></ul>' +
+      '<h3>Need help?</h3><ul><li>Forward scam texts to 7726 (free).</li><li>Forward scam emails to report@phishing.gov.uk.</li><li>Under 18 and worried? Childline: 0800 1111 (free).</li></ul>' +
+      '<h3>About the lessons</h3><ul>' + ls + '</ul><p class="small muted">This is not legal advice. Check current ICO guidance for your own situation.</p></div>' +
+      '<section class="card"><h2>Your choices</h2><p class="small">Events stored on this device: ' + S.events.length + '</p>' +
+      (UI.confirmDelete
+        ? '<div class="confirm" role="alertdialog"><p><b>Delete everything?</b> This removes your progress, XP, badges and comments from this device. It cannot be undone.</p><div class="row"><button type="button" class="btn btn-ghost" data-act="delno">Keep</button><button type="button" class="btn btn-red" data-act="delyes">Delete</button></div></div>'
+        : '<button type="button" class="btn btn-red btn-block" data-act="delask">Delete my data</button>') + '</section></main></div>';
+  }
+
+  /* ---------- render ---------- */
+  const SCREENS = { route: rRoute, learn: rLearn, dashboard: rDash, me: rMe, ylesson: rYLesson, course: rCourse, alesson: rALesson, aprogress: rAProgress, cert: rCert, privacy: rPrivacy };
+  function render() {
+    WG = {}; wn = 0;
+    root.innerHTML = SCREENS[UI.screen]();
+    const view = root.querySelector('[data-view]');
+    const key = UI.screen + '|' + (view ? view.dataset.view : '') + '|' + (UI.yl && UI.screen === 'ylesson' && UI.yl.out ? 'out' : '');
+    if (key !== UI.lastKey) { UI.lastKey = key; stopSpeech(); try { window.scrollTo(0, 0); } catch (e) { /* ignore */ } }
+    if (view && /^a\d/.test(view.dataset.view)) {
+      const vk = view.dataset.lesson + view.dataset.view;
+      if (vk !== UI.lastView) { UI.lastView = vk; ev('article_viewed', view.dataset.lesson); }
+    }
+  }
+  function go(screen) { if (screen === 'privacy') UI.from = UI.screen; UI.screen = screen; render(); }
+  function toast(msg) {
+    const t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = msg; document.body.appendChild(t);
+    setTimeout(() => { if (t.parentNode) t.parentNode.removeChild(t); }, 2200);
+  }
+
+  /* ---------- actions ---------- */
+  function startYouth(id) {
+    UI.yl = { id: id, idx: 0, hearts: L.MAX_HEARTS, correct: 0, sel: [], checked: false, right: null, quit: false, done: null, out: false };
+    ev('lesson_started', id); UI.screen = 'ylesson'; render();
+  }
+  function openAdult(id, step) {
+    const l = lessonById(id), p = S.adult.progress[id];
+    const st = L.adultStatus(l, S);
+    UI.al = { id: id, step: step != null ? step : (st === 'in-progress' ? Math.min(p.steps_completed, l.steps.length - 1) : 0), draft: '', warn: '' };
+    UI.at = null;
+    if (st === 'not-started') ev('lesson_started', id);
+    UI.screen = 'alesson'; render();
+  }
+  function homeScreen() { return S.route === 'adult' ? 'course' : S.route === 'youth' ? 'learn' : 'route'; }
+
+  const H = {
+    route(el) { S.route = el.dataset.r; S.age_band = el.dataset.r === 'youth' ? 'under18' : '18plus'; save(); go(homeScreen()); },
+    resume() { go(homeScreen()); },
+    tab(el) { UI.screen = el.dataset.t; UI.at = null; render(); },
+    tip() { S.tip++; save(); render(); },
+    locked() { toast('Finish the lesson before this one to unlock it.'); },
+    startY(el) { startYouth(el.dataset.id); },
+    listen(el) {
+      const lesson = lessonById(currentLessonId());
+      const arts = L.articles(lesson);
+      const s = UI.screen === 'ylesson' ? arts[Number(el.dataset.i)] : lesson.steps[UI.al.step];
+      speak(stepSpeech(s));
+    },
+    hot(el) {
+      el.setAttribute('aria-pressed', 'true');
+      const box = el.closest('.wgt').querySelector('.expl'); box.textContent = el.dataset.note; box.classList.remove('empty');
+      widgetUsed(el);
+    },
+    flow(el) {
+      const open = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', String(!open)); el.querySelector('.fnote').hidden = open; widgetUsed(el);
+    },
+    /* under-18 lesson */
+    ynext() { UI.yl.idx++; UI.yl.sel = []; render(); },
+    pick(el) {
+      const st = UI.screen === 'ylesson' ? UI.yl : UI.at, lesson = lessonById(currentLessonId());
+      const q = UI.screen === 'ylesson' ? qs(lesson)[st.idx - L.articles(lesson).length] : qs(lesson)[st.qi];
+      st.sel = toggleSel(st.sel, q, Number(el.dataset.i)); render();
+    },
+    chip(el) { H.pick(el); },
+    ycheck() {
+      const ss = UI.yl, lesson = lessonById(ss.id), q = qs(lesson)[ss.idx - L.articles(lesson).length];
+      if (!ss.sel.length) return;
+      ss.checked = true; ss.right = L.isCorrect(q, ss.sel);
+      if (ss.right) ss.correct++; else ss.hearts--;
+      ev('question_answered', lesson.id, ss.right); render();
+    },
+    ycont() {
+      const ss = UI.yl, lesson = lessonById(ss.id), arts = L.articles(lesson), list = qs(lesson);
+      if (ss.hearts <= 0) { ss.out = true; render(); return; }
+      if (ss.idx - arts.length === list.length - 1) {
+        ss.done = L.completeYouthLesson(S, LS, lesson, { correct: ss.correct, heartsLeft: ss.hearts }, today());
+        ev('lesson_completed', lesson.id); save(); render(); return;
+      }
+      ss.idx++; ss.sel = []; ss.checked = false; ss.right = null; render();
+    },
+    yquit() { UI.yl.quit = true; render(); },
+    ystay() { UI.yl.quit = false; render(); },
+    yleave() { UI.screen = 'learn'; render(); },
+    yretry() { startYouth(UI.yl.id); },
+    /* 18+ */
+    continueA() { const f = L.firstUnfinished(LS, S); if (f) openAdult(f.lesson.id, f.step); else openAdult(LS[0].id, 0); },
+    openA(el) {
+      const l = lessonById(el.dataset.id);
+      openAdult(l.id, L.adultStatus(l, S) === 'complete' ? 0 : null);
+    },
+    aback() { UI.screen = 'course'; UI.at = null; render(); },
+    astep(el) { UI.al.step = Number(el.dataset.i); UI.at = null; UI.al.warn = ''; render(); },
+    aprev() { if (UI.al.step > 0) { UI.al.step--; UI.at = null; render(); } },
+    acomplete() {
+      const lesson = lessonById(UI.al.id);
+      L.markAdultStep(S, lesson, UI.al.step, today()); save();
+      if (UI.al.step < lesson.steps.length - 1) UI.al.step++;
+      UI.at = null; UI.al.warn = ''; render();
+    },
+    post() {
+      const box = document.getElementById('cbox'), text = (box ? box.value : '').trim();
+      if (!text) { UI.al.warn = 'Write something first.'; render(); return; }
+      if (L.looksPersonal(text)) { UI.al.draft = text; UI.al.warn = 'That looks like personal details, such as an email, phone number or postcode. Please remove them before posting.'; render(); return; }
+      S.adult.comments.push({ id: 'c' + Date.now() + S.adult.comments.length, lesson_id: UI.al.id, body: text, status: 'approved', created_at: today() });
+      UI.al.draft = ''; UI.al.warn = ''; ev('discussion_posted', UI.al.id); save(); render();
+    },
+    astart() { UI.at = { qi: 0, sel: [], checked: false, right: null, correct: 0, result: null }; render(); },
+    areview() { UI.al.step = 0; UI.at = null; render(); },
+    acheck() {
+      const at = UI.at, lesson = lessonById(UI.al.id), q = qs(lesson)[at.qi];
+      if (!at.sel.length) return;
+      at.checked = true; at.right = L.isCorrect(q, at.sel); if (at.right) at.correct++;
+      ev('question_answered', lesson.id, at.right); render();
+    },
+    anext() {
+      const at = UI.at, lesson = lessonById(UI.al.id), list = qs(lesson);
+      if (at.qi === list.length - 1) {
+        at.result = L.recordAdultTest(S, lesson, at.correct, list.length, today());
+        if (at.result.passed) ev('lesson_completed', lesson.id);
+        save();
+      } else { at.qi++; at.sel = []; at.checked = false; at.right = null; }
+      render();
+    },
+    cert() { go('cert'); },
+    print() { try { window.print(); } catch (e) { toast('Printing is not available here.'); } },
+    download() {
+      try {
+        const blob = new Blob([certSvg()], { type: 'image/svg+xml' }), a = document.createElement('a');
+        a.href = URL.createObjectURL(blob); a.download = 'xdata-statement.svg'; document.body.appendChild(a); a.click(); a.remove();
+      } catch (e) { toast('Download is not available here.'); }
+    },
+    /* privacy */
+    privacy() { go('privacy'); },
+    pback() { UI.confirmDelete = false; UI.screen = UI.from || homeScreen(); render(); },
+    delask() { UI.confirmDelete = true; render(); },
+    delno() { UI.confirmDelete = false; render(); },
+    delyes() {
+      try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ }
+      S = L.newState(deviceId(), today()); UI.confirmDelete = false; UI.yl = null; UI.al = null; UI.at = null; UI.certName = ''; stopSpeech();
+      UI.screen = 'route'; render(); toast('Your data has been deleted.');
+    },
+    install() { const e = UI.installEvt; if (e) { e.prompt(); UI.installEvt = null; render(); } }
+  };
+  const INPUT = {
+    pw(el) {
+      const wrap = el.closest('.wgt'), r = L.passwordCheck(el.value), meter = wrap.querySelector('.pw-meter'), read = wrap.querySelector('.pw-read');
+      widgetUsed(el);
+      if (!r) { meter.className = 'pw-meter l0'; meter.querySelectorAll('i').forEach(i => i.classList.remove('on')); read.className = 'expl empty pw-read'; read.textContent = 'Type to test. Nothing you type is saved or sent.'; return; }
+      meter.className = 'pw-meter l' + r.score;
+      meter.querySelectorAll('i').forEach((i, n) => i.classList.toggle('on', n < Math.max(1, r.score)));
+      read.className = 'expl pw-read'; read.textContent = r.label + '. ' + (r.tips.length ? r.tips.join(' ') : 'Long and hard to guess.');
+    },
+    draft(el) { if (UI.al) UI.al.draft = el.value; },
+    certname(el) { UI.certName = el.value.slice(0, 60); const w = document.getElementById('certwho'); if (w) w.textContent = UI.certName; }
+  };
+
+  root.addEventListener('click', e => {
+    const el = e.target.closest('[data-act]');
+    if (!el || el.disabled || !root.contains(el)) return;
+    const fn = H[el.dataset.act]; if (fn) fn(el, e);
+  });
+  root.addEventListener('input', e => { const k = e.target.dataset && e.target.dataset.in; if (k && INPUT[k]) INPUT[k](e.target); });
+  root.addEventListener('change', e => {
+    const id = e.target.dataset && e.target.dataset.meter; if (!id) return;
+    const w = WG[id], wrap = e.target.closest('.wgt');
+    const boxes = wrap.querySelectorAll('input[data-meter]');
+    let sum = 0, total = 0;
+    w.items.forEach((it, i) => { total += it.weight; if (boxes[i].checked) sum += it.weight; });
+    const pct = total ? Math.round(sum / total * 100) : 0;
+    const lvl = pct === 0 ? null : w.levels.find(l => pct <= l.upTo) || w.levels[w.levels.length - 1];
+    const fill = wrap.querySelector('.meter-fill'), box = wrap.querySelector('.expl');
+    fill.style.width = pct + '%'; fill.className = 'meter-fill' + (pct > 66 ? ' high' : pct > 33 ? ' med' : '');
+    wrap.querySelector('.meter-track').setAttribute('aria-valuenow', pct);
+    wrap.querySelector('.m-label').textContent = lvl ? lvl.label : 'None selected'; wrap.querySelector('.m-pct').textContent = pct + '%';
+    box.textContent = lvl ? lvl.note : 'Tick what an app might ask for.'; box.classList.toggle('empty', !lvl);
+    widgetUsed(e.target);
+  });
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); UI.installEvt = e; if (UI.screen === 'route' && C) render(); });
+  window.addEventListener('pagehide', () => {
+    if (!C || !C.app.eventsEndpoint || !S.events.length || !navigator.sendBeacon) return;
+    try { if (navigator.sendBeacon(C.app.eventsEndpoint, JSON.stringify({ device_id: S.device_id, events: S.events }))) { S.events = []; save(); } } catch (e) { /* ignore */ }
+  });
+
+  /* ---------- start ---------- */
+  async function loadContent() {
+    if (window.XDATA_CONTENT) return window.XDATA_CONTENT;
+    const r = await fetch('content/lessons.json'); if (!r.ok) throw new Error('content');
+    return r.json();
+  }
+  async function init() {
+    try { C = await loadContent(); } catch (e) {
+      root.innerHTML = '<div class="loading"><div><h1>xData</h1><p>The lessons could not load. Check your connection and try again.</p><button type="button" class="btn" id="retry">Try again</button></div></div>';
+      document.getElementById('retry').onclick = init; return;
+    }
+    LS = L.orderLessons(C); QB = {}; C.questions.forEach(q => { QB[q.id] = q; });
+    S = loadState();
+    UI.screen = homeScreen(); render();
+    if (!window.XDATA_STANDALONE && 'serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+      try { navigator.serviceWorker.register('sw.js'); } catch (e) { /* offline support is optional */ }
+    }
+  }
+  window.XDATA_APP = { state: () => S, ui: UI };
+  init();
+})();
+
+</script>
+
+</body></html>
